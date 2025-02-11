@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.API", "Services\Auth\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Application", "Services\Auth\Auth.Application\Auth.Application.csproj", "{D45E5EC4-6324-4263-9A8C-7E9D4064ECB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Core", "Services\Auth\Auth.Core\Auth.Core.csproj", "{60B72D45-A46D-4720-9227-D36713567EB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Domain", "Services\Auth\Auth.Core\Auth.Domain.csproj", "{60B72D45-A46D-4720-9227-D36713567EB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Infrastructure", "Services\Auth\Auth.Infrastructure\Auth.Infrastructure.csproj", "{9E0CB6AE-16F1-4893-B7B8-D405B64E918A}"
 EndProject
