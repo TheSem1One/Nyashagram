@@ -10,10 +10,11 @@ namespace Auth.Infrastructure.Helpers
     {
         public string PasswordHashing(string password)
         {
-            string salt = BCrypt.Net.BCrypt.GenerateSalt(15);
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(10);
             string HashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
             return HashedPassword;
         }
-     
+
+        
     }
 }
