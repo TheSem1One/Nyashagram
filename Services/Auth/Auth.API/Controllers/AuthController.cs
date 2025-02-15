@@ -19,5 +19,13 @@ namespace Auth.API.Controllers
             _logIn.UserLogin(logModel);
             return(Ok());
         }
+
+
+        [HttpPost("regis")]
+        public IActionResult Regis([FromBody] RegisModel regModel)
+        {
+
+            return (Ok());
+        }
     }
 }

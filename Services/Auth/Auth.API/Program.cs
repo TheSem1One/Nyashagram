@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Auth.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
+using Auth.Infrastructure.Configuration;
 
 namespace Auth.API
 {
@@ -30,6 +31,7 @@ namespace Auth.API
                     .AllowAnyOrigin();
             }));
             builder.Services.AddScoped<UserAuth>();
+            builder.Services.AddScoped<FindUser>();
             var app = builder.Build();
 
          

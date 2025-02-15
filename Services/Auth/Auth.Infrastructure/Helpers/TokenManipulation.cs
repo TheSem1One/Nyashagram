@@ -5,24 +5,32 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Auth.Infrastructure.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 
 namespace Auth.Infrastructure.Helpers
 {
-    internal class TokenManipulation
+    public class TokenManipulation
     {
+        protected readonly FindUser _findUser;
+        public TokenManipulation(FindUser findUser)
+        {
+            _findUser=findUser;
+        }
+        
         public string CreateToken(string email, string password, DateTime expiresAt, string strSecretKey)
         {
 
 
-            var app = _appReposetory.GetUserByEmail(email);
+            var app =_findUser.GetUserByEmail(email);
             var claism = new List<Claim>
             {
-                new Claim ("Email", app.Email??string.Empty),
-                new Claim ("Password", app.Password??string.Empty),
-                new Claim ("Name", app.Name??string.Empty),
-                new Claim ("Scopes",(app?.Scopes??string.Empty).Contains("User")?"true":"false"),
+                new Claim ("Email", app.email??string.Empty),
+                new Claim ("Password", app.password??string.Empty),
+                new Claim ("Name", app.nickName??string.Empty),
+                
+                
             };
             var secretKey = Encoding.ASCII.GetBytes(strSecretKey);
             var jwt = new JwtSecurityToken(
