@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Auth.Infrastructure.Helpers
 {
-    internal class HashPassword
+    public class HashPassword
     {
         public string PasswordHashing(string password)
         {

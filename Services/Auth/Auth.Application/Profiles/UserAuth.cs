@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Auth.Domain.Entities;
 using Auth.Domain.Entities.AuthEntities;
-using Auth.Infrastructure;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Auth.Application.Profiles
 {
-    public class UserAuth
+    public class UserAuth()
     {
         public void UserLogin(LogModel logModel)
         {

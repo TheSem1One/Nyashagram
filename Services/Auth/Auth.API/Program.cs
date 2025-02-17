@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using Auth.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
 using Auth.Infrastructure.Configuration;
+using Auth.Infrastructure.Helpers;
 
 namespace Auth.API
 {
@@ -32,6 +33,9 @@ namespace Auth.API
             }));
             builder.Services.AddScoped<UserAuth>();
             builder.Services.AddScoped<FindUser>();
+            builder.Services.AddScoped<UserProps>();
+            builder.Services.AddScoped<TokenManipulation>();
+            builder.Services.AddScoped<HashPassword>();
             var app = builder.Build();
 
          

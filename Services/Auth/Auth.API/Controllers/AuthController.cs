@@ -17,7 +17,7 @@ namespace Auth.API.Controllers
         public IActionResult Login([FromBody] LogModel logModel)
         {
             _logIn.UserLogin(logModel);
-            return(Ok());
+            return Ok();
         }
 
 
@@ -25,7 +25,7 @@ namespace Auth.API.Controllers
         public IActionResult Regis([FromBody] RegisModel regModel)
         {
 
-            return (Ok());
+            return Ok();
         }
     }
 }

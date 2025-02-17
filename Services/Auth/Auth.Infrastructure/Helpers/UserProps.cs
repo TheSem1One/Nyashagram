@@ -9,7 +9,7 @@ using Auth.Domain.Entities.AuthEntities;
 
 namespace Auth.Infrastructure.Helpers
 {
-    class UserProps
+    public class UserProps
     {
         public User SetUserProp(RegisModel regisModel)
         {

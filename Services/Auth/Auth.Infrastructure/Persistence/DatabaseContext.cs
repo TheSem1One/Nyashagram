@@ -10,13 +10,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Auth.Infrastructure.Persistence 
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext(IConfiguration configuration) : DbContext
     {
-        protected readonly IConfiguration _configuration;
-        public DatabaseContext(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        protected readonly IConfiguration _configuration = configuration;
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
