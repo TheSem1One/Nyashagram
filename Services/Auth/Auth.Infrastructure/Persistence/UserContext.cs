@@ -9,8 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Auth.Infrastructure.Persistence
 {
-    public class Modelcontext(DbContextOptions<Modelcontext> options) : DbContext(options)
+    public class UserContext: DbContext
     {
+        public UserContext(DbContextOptions options) : base(options)
+        {
+        }
         public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

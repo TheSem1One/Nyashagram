@@ -22,7 +22,7 @@ namespace Auth.Application.Profiles
 
         public void UserRegister(RegisModel regModel)
         {
-            User user = SetUser(regModel);
+           
         }
     }
 }

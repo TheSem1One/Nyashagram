@@ -9,8 +9,8 @@ namespace Auth.Domain.Repositories
 {
     public interface IUser
     {
-        Task<User> CreateUser(User user);
+        Task<string> CreateUser(User user);
         Task<bool> UpdateUser(User user );
-        Task<IEnumerable<User>> GetUserByName(string name);
+        Task<User> GetUserByName(string name);
     }
 }

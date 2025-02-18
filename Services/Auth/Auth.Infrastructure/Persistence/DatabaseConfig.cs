@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Auth.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Auth.Infrastructure.Persistence 
 {
-    public class DatabaseContext(IConfiguration configuration) : DbContext
+    public class DatabaseConfig(IConfiguration configuration) : DbContext
     {
         protected readonly IConfiguration _configuration = configuration;
 

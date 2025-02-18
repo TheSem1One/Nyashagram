@@ -1,4 +1,5 @@
 using Auth.Application.Profiles;
+using Auth.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +21,7 @@ namespace Auth.API
 
             builder.Services.AddSwaggerGen(c=>c.SwaggerDoc("v1", new OpenApiInfo{Title ="Auth.API", Version = "v1"}));
             builder.Services.AddControllers();
-            builder.Services.AddDbContext<DatabaseContext>(opts =>
+            builder.Services.AddDbContext<UserContext>(opts =>
                 opts
                     .UseNpgsql(builder.Configuration.GetConnectionString("ApiDatabase"))
             );
@@ -32,7 +33,6 @@ namespace Auth.API
                     .AllowAnyOrigin();
             }));
             builder.Services.AddScoped<UserAuth>();
-            builder.Services.AddScoped<FindUser>();
             builder.Services.AddScoped<UserProps>();
             builder.Services.AddScoped<TokenManipulation>();
             builder.Services.AddScoped<HashPassword>();

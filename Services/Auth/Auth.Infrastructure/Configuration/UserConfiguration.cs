@@ -8,7 +8,10 @@ namespace Auth.Infrastructure.Configuration{
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(user => user.userId);
+            builder
+                .HasIndex(user => user.email)
+                .IsUnique();
         }
     }
 }
