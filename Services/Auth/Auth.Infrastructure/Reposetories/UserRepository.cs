@@ -10,7 +10,7 @@ namespace Auth.Infrastructure.Reposetories
 {
     public class UserRepository : IUser
     {
-        protected readonly UserContext _db ;
+        private readonly UserContext _db ;
         private readonly TokenManipulation _tokenManipulation;
 
         public UserRepository(UserContext db, TokenManipulation tokenManipulation)
