@@ -1,4 +1,4 @@
-using Auth.Application.Profiles;
+
 using Auth.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -32,7 +32,7 @@ namespace Auth.API
                     .AllowAnyMethod()
                     .AllowAnyOrigin();
             }));
-            builder.Services.AddScoped<UserAuth>();
+            
             builder.Services.AddScoped<UserProps>();
             builder.Services.AddScoped<TokenManipulation>();
             builder.Services.AddScoped<HashPassword>();

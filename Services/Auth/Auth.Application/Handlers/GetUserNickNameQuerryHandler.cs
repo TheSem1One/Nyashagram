@@ -20,7 +20,7 @@ namespace Auth.Application.Handlers
        async public Task<UserResponse> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _user.GetUserByName(request.NickName);
-            var userResponse = UserMapper.Mapper.Map<UserResponse(user);
+            var userResponse = UserMapper.Mapper.Map<UserResponse>(user);
             return userResponse;
         }
     }

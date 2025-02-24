@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Auth.Domain.Entities.AuthEntities
 {
-    public class RegisModel
+    public class Register : User
     {
-        public string nickName;
-        public string email;
-        public string password;
+        public string NickName;
+        public string Email;
+        public string Password;
     }
 }

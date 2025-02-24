@@ -11,7 +11,7 @@ namespace Auth.Infrastructure.Helpers
 {
     public class UserProps
     {
-        public User SetUserProp(RegisModel regisModel)
+        public User SetUserProp(Register regisModel)
         {
             User user = new User();
             user.nickName = regisModel.nickName;
