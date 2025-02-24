@@ -9,6 +9,7 @@ namespace Auth.Application.Mappers
         public UserMappingProfile()
         {
             CreateMap<User, UserResponse>().ReverseMap();
+            CreateMap<User, RegisterResponse>().ReverseMap();
         }
     }
 }

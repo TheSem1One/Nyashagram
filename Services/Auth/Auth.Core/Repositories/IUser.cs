@@ -10,7 +10,7 @@ namespace Auth.Domain.Repositories
 {
     public interface IUser
     {
-        Task<string> CreateUser(Register register);
+        Task<string> CreateUser(User user);
         Task<bool> UpdateUser(User user );
         Task<User> GetUserByName(string name);
     }
