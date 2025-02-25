@@ -1,20 +1,21 @@
 ﻿using Auth.Application.Responses;
+using Auth.Domain.DTO;
 using MediatR;
 
 namespace Auth.Application.Commands
 {
     public class CreateUserCommand : IRequest<RegisterResponse>
     {
-        public int userId { get; set; }
-        public string nickName { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public DateTime? birthDate { get; set; }
-        public List<string>? subcriptions { get; set; }
-        public List<string>? subscribers { get; set; }
-        public List<string>? posts { get; set; }
-        public List<string>? storiesList { get; set; }
-        public List<string>? savedPosts { get; set; }
-        public bool privateProfile { get; set; }
+        public string NickName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
+
+        public CreateUserCommand(string nickName, string email, string password)
+        {
+            NickName = password;
+            Email = email;
+            Password = password;
+        }
+
     }
 }

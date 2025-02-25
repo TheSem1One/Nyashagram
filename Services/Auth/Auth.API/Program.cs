@@ -1,15 +1,10 @@
-
-using System.Reflection;
-using Auth.Domain.Entities;
+using Auth.Application.Queries;
 using Auth.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Auth.Infrastructure.Persistence;
-using Microsoft.Extensions.Configuration;
-using Auth.Infrastructure.Configuration;
 using Auth.Infrastructure.Helpers;
+using Auth.Infrastructure.Reposetories;
 
 namespace Auth.API
 {
@@ -26,10 +21,9 @@ namespace Auth.API
             //Register AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             //RegisterMediator 
-            builder.Services.AddMediatR(cfg=> cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            builder.Services.AddMediatR(cfg=> cfg.RegisterServicesFromAssembly(typeof(GetUserQuery).Assembly));
             //Register App Services
-           
-            builder.Services.AddScoped<UserProps>();
+            builder.Services.AddScoped<IAuth, AuthRepository>();
             builder.Services.AddScoped<TokenManipulation>();
             builder.Services.AddScoped<HashPassword>();
 

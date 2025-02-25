@@ -9,9 +9,9 @@ namespace Auth.Application.Handlers
 {
     public class GetUserNickNameQuerryHandler : IRequestHandler<GetUserQuery, UserResponse>
     {
-        private readonly IUser _user;
+        private readonly IAuth _user;
     
-        public GetUserNickNameQuerryHandler(IUser iUser, IMapper mapper)
+        public GetUserNickNameQuerryHandler(IAuth iUser, IMapper mapper)
         {
             
             _user = iUser;

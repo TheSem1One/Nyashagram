@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Auth.Infrastructure.Persistence 
+namespace Auth.Infrastructure.Persistence
 {
     public class DatabaseConfig(IConfiguration configuration) : DbContext
     {
@@ -12,6 +12,6 @@ namespace Auth.Infrastructure.Persistence
             options.UseNpgsql(_configuration.GetConnectionString("ApiDatabase"));
         }
 
-      
+
     }
 }

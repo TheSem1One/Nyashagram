@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Auth.Infrastructure.Helpers
 {
     public class HashPassword
     {
-        public string PasswordHashing(string password)
+        private const int keySize = 64;
+        private const int iterations = 35000;
+
+
+        public string HashingPassword(string password, out byte[] salt)
         {
-            string salt = BCrypt.Net.BCrypt.GenerateSalt(10);
-            string HashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
-            return HashedPassword;
+            var hashAlgorithm = HashAlgorithmName.SHA512;
+            salt = RandomNumberGenerator.GetBytes(keySize);
+            var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password),
+                salt, iterations, hashAlgorithm, keySize);
+
+            return Convert.ToHexString(hash);
+
         }
 
-        
+
     }
 }

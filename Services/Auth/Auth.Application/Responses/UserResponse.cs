@@ -1,9 +1,7 @@
-﻿
-
-namespace Auth.Application.Responses
+﻿namespace Auth.Application.Responses
 {
     public class UserResponse
     {
-        public string NickName { get; set; }
+        public string NickName { get; set; } = null!;
     }
 }
