@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
-using Auth.Application.Responses;
+﻿using Auth.Application.Responses;
 using MediatR;
 
 namespace Auth.Application.Queries

@@ -4,8 +4,8 @@ namespace Auth.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  
-    public class ApiController :ControllerBase
+
+    public class ApiController : ControllerBase
     {
     }
 }

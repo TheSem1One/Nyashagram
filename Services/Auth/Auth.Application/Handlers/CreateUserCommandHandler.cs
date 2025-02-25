@@ -17,12 +17,12 @@ namespace Auth.Application.Handlers
             _iuser = iuser;
         }
 
-     
+
 
         public async Task<RegisterResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var userEntity = UserMapper.Mapper.Map<RegisterDTO>(request);
-            if(userEntity is null)
+            if (userEntity is null)
             {
                 throw new ApplicationException("There is an issue with mapping while creating new User");
             }

@@ -10,14 +10,14 @@ namespace Auth.Application.Handlers
     public class GetUserNickNameQuerryHandler : IRequestHandler<GetUserQuery, UserResponse>
     {
         private readonly IAuth _user;
-    
+
         public GetUserNickNameQuerryHandler(IAuth iUser, IMapper mapper)
         {
-            
+
             _user = iUser;
         }
 
-       async public Task<UserResponse> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        async public Task<UserResponse> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _user.GetUserByName(request.NickName);
             var userResponse = UserMapper.Mapper.Map<UserResponse>(user);

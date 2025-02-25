@@ -21,21 +21,22 @@ namespace Auth.API.Controllers
         }
 
         [HttpGet]
-        [Route("[action]/nickName", Name = "GetUserByNickName")]
+        [Route("[action]/{nickName}", Name = "GetUserByNickName")]
         [ProducesResponseType(typeof(UserResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<UserResponse>> GetUserByNickName([FromHeader] string nickName)
+        public async Task<ActionResult<UserResponse>> GetUserByNickName(string nickName)
         {
             var query = new GetUserQuery(nickName);
             var result = await _mediator.Send((query));
             return Ok(result);
         }
+
         [HttpPost]
         [Route("CreateUser")]
-        [ProducesResponseType(typeof(RegisterResponse),(int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RegisterResponse), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<RegisterResponse>> CreateUser([FromBody] RegisterDTO registerDTO)
         {
-            var command = new CreateUserCommand(registerDTO.Email,registerDTO.NickName,registerDTO.Password);
+            var command = new CreateUserCommand(registerDTO.Email, registerDTO.NickName, registerDTO.Password);
             var result = await _mediator.Send(command);
             return Ok(result);
         }
