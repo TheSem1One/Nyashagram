@@ -27,6 +27,7 @@ namespace Auth.API
             builder.Services.AddScoped<TokenManipulation>();
             builder.Services.AddScoped<HashPassword>();
             builder.Services.AddScoped<UserIdentity>();
+            builder.Services.AddScoped<ClaimCreator>();
 
             builder.Services.AddDbContext<UserContext>(opts =>
                 opts

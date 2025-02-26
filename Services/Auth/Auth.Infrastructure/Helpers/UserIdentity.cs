@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Auth.Domain.DTO;
 using Auth.Infrastructure.Persistence;
 
 namespace Auth.Infrastructure.Helpers
@@ -11,17 +7,38 @@ namespace Auth.Infrastructure.Helpers
     {
         private readonly UserContext _db;
         private readonly HashPassword _hashPassword;
+
         public UserIdentity(UserContext db, HashPassword hashPassword)
         {
             _db = db;
             _hashPassword = hashPassword;
 
         }
+
+        public UserDTO GetJwtUser(string email)
+        {
+            var user = _db.Users.SingleOrDefault(user => user.email.ToLower() == email.ToLower());
+            var userDTO = new UserDTO
+            {
+                NickName = user.nickName,
+                BirthDate = user.birthDate,
+                Posts = user.posts,
+                SavedPosts = user.savedPosts,
+                StoriesList = user.storiesList,
+                Subcriptions = user.subcriptions,
+                Subscribers = user.subscribers,
+                PrivateProfile = user.privateProfile
+            };
+            return userDTO;
+
+        }
+
         public bool IsEqual(string email, string password)
         {
-            var hashPassword = _hashPassword.HashingPassword(password, out var salt);
+            var hashPassword = _hashPassword.HashingPassword(password);
             var user = _db.Users.SingleOrDefault(user => user.email.ToLower() == email.ToLower());
-            return (user.email == email && user.password == hashPassword);
+            return user.email.ToLower() == email.ToLower() && user.password == hashPassword;
+
         }
     }
 }

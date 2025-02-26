@@ -1,29 +1,23 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Auth.Infrastructure.Persistence;
-using Microsoft.Extensions.Configuration;
+using Auth.Domain.DTO;
 using Microsoft.IdentityModel.Tokens;
-
 
 namespace Auth.Infrastructure.Helpers
 {
-    public class TokenManipulation(UserContext userContext, IConfiguration configuration)
+    public class TokenManipulation(UserIdentity userIdentity, ClaimCreator claim)
     {
-        private readonly UserContext _userContext = userContext;
-        protected readonly IConfiguration _configuration = configuration;
-
+        private readonly UserIdentity _userIdentity = userIdentity;
+        private readonly ClaimCreator _claim = claim;
         public string CreateToken(string email, string password)
         {
+            UserDTO user = _userIdentity.GetJwtUser(email);
             var strSecretKey = "qwertyuiop[]';lkhhgfdfddsasxcvbnmm,";
             var expiresAt = DateTime.UtcNow.AddYears(20);
-            /*var app = _userContext.Users.FirstOrDefault(p => p.email == email);*/
 
-            var claims = new List<Claim>
-            {
-                new Claim ("Email", email??string.Empty),
-                new Claim ("Password", password??string.Empty)
-            };
+
+            var claims = _claim.GetClaims(user);
             var secretKey = Encoding.ASCII.GetBytes(strSecretKey);
             var jwt = new JwtSecurityToken(
                 signingCredentials: new SigningCredentials(

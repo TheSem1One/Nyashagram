@@ -7,7 +7,6 @@ namespace Auth.Domain.Repositories
     {
         Task<string> CreateUser(RegisterDTO registerDto);
         Task<string> LoginUser(LoginDTO loginDto);
-        Task<bool> UpdateUser(User user);
         Task<User> GetUserByName(string name);
         Task<bool> UserExist(string email);
     }

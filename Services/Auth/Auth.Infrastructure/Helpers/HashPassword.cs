@@ -5,21 +5,16 @@ namespace Auth.Infrastructure.Helpers
 {
     public class HashPassword
     {
-        private const int keySize = 64;
-        private const int iterations = 35000;
 
-
-        public string HashingPassword(string password, out byte[] salt)
+        public string HashingPassword(string password)
         {
-            var hashAlgorithm = HashAlgorithmName.SHA512;
-            salt = RandomNumberGenerator.GetBytes(keySize);
-            var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password),
-                salt, iterations, hashAlgorithm, keySize);
-
-            return Convert.ToHexString(hash);
-
+            using (var sha128 = SHA1.Create())
+            {
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                byte[] hash = sha128.ComputeHash(passwordBytes);
+                return Convert.ToBase64String(hash);
+            }
         }
-
 
     }
 }

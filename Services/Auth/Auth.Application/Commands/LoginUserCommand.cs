@@ -1,10 +1,9 @@
-﻿using System.Reflection.PortableExecutable;
-using Auth.Application.Responses;
+﻿using Auth.Application.Responses;
 using MediatR;
 
 namespace Auth.Application.Commands
 {
-    class LoginUserCommand : IRequest<RegisterResponse>
+    public class LoginUserCommand : IRequest<AuthResponse>
     {
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;

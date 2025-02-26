@@ -29,7 +29,7 @@ namespace Auth.Infrastructure.Reposetories
             {
                 return "User already exist";
             }
-            registerDto.Password = _hashPassword.HashingPassword(registerDto.Password, out var salt);
+            registerDto.Password = _hashPassword.HashingPassword(registerDto.Password);
 
             var user = new User
             {
@@ -66,10 +66,7 @@ namespace Auth.Infrastructure.Reposetories
                 .FirstOrDefaultAsync(p => p.nickName == nickName);
         }
 
-        Task<bool> IAuth.UpdateUser(User user)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public async Task<bool> UserExist(string email)
         {

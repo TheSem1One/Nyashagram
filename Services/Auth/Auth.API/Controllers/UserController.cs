@@ -1,11 +1,8 @@
 ﻿using System.Net;
 using Auth.Application.Commands;
-using Auth.Application.Handlers;
 using Auth.Application.Queries;
 using Auth.Application.Responses;
 using Auth.Domain.DTO;
-using Auth.Domain.Entities;
-using Auth.Domain.Entities.AuthEntities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,10 +30,20 @@ namespace Auth.API.Controllers
 
         [HttpPost]
         [Route("CreateUser")]
-        [ProducesResponseType(typeof(RegisterResponse), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<RegisterResponse>> CreateUser([FromBody] RegisterDTO registerDTO)
+        [ProducesResponseType(typeof(AuthResponse), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<AuthResponse>> CreateUser([FromBody] RegisterDTO registerDTO)
         {
-            var command = new CreateUserCommand(registerDTO.Email, registerDTO.NickName, registerDTO.Password);
+            var command = new CreateUserCommand(registerDTO.NickName, registerDTO.Email, registerDTO.Password);
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("LoginUser")]
+        [ProducesResponseType(typeof(AuthResponse), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<AuthResponse>> LoginUser([FromBody] LoginDTO loginDto)
+        {
+            var command = new LoginUserCommand(loginDto.Email, loginDto.Password);
             var result = await _mediator.Send(command);
             return Ok(result);
         }
