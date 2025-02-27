@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Post.Infrastructure.Presistence;
+using Post.Infrastructure.Data;
+
 
 namespace Post.API
 {
@@ -13,10 +14,8 @@ namespace Post.API
             builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Post.API", Version = "v1" }));
 
             builder.Services.AddControllers();
-            builder.Services.AddDbContext<PostContext>(opts =>
-                opts
-                    .UseNpgsql(builder.Configuration.GetConnectionString("ApiDatabase"))
-            );
+            builder.Services.Configure<MongoDbSettings>(
+                builder.Configuration.GetSection(nameof(MongoDbSettings)));
             builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
             {
                 corsPolicyBuilder
