@@ -7,7 +7,7 @@ namespace Post.Domain.Entities
     {
         [BsonId]
         [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-        public string PostId { get; set; }
+        public string? PostId { get; set; }
 
         [BsonElement("PostImageUrl"), BsonRepresentation(BsonType.String)]
         public string PostImageUrl { get; set; }
