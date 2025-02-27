@@ -41,6 +41,7 @@ namespace Auth.API.Controllers
         [HttpPost]
         [Route("LoginUser")]
         [ProducesResponseType(typeof(AuthResponse), (int)HttpStatusCode.OK)]
+        
         public async Task<ActionResult<AuthResponse>> LoginUser([FromBody] LoginDTO loginDto)
         {
             var command = new LoginUserCommand(loginDto.Email, loginDto.Password);

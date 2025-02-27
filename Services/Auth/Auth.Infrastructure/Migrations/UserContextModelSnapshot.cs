@@ -11,14 +11,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Auth.Infrastructure.Migrations
 {
-    [DbContext(typeof(DatabaseConfig))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UserContext))]
+    partial class UserContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.1")
+                .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -65,6 +65,9 @@ namespace Auth.Infrastructure.Migrations
                         .HasColumnType("text[]");
 
                     b.HasKey("userId");
+
+                    b.HasIndex("email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
