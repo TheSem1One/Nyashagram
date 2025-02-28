@@ -15,4 +15,9 @@
     <ProjectReference Include="..\Post.Domain\Post.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Handles\" />
+  </ItemGroup>
+
 </Project>
