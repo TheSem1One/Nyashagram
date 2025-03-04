@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Post.Application.Mappers
 {
-    class PostMapper
+    public static class PostMapper
     {
         private static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(() =>
         {
