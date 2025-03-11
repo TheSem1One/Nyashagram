@@ -14,4 +14,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Image.Application\Image.Application.csproj" />
+    <ProjectReference Include="..\Image.Infrastructure\Image.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
