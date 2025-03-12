@@ -1,3 +1,4 @@
+using FileManager.Infrastructure.Helpers;
 using FileManager.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,7 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
         .AllowAnyMethod()
         .AllowAnyOrigin();
 }));
+builder.Services.AddScoped<FileHelper>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

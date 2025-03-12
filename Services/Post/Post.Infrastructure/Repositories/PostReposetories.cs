@@ -7,7 +7,7 @@ namespace Post.Infrastructure.Repositories
     public class PostReposetories : IPostReposetory
     {
         private IPostContext _context { get; }
-          PostReposetories(IPostContext context)
+        PostReposetories(IPostContext context)
         {
             _context = context;
         }
