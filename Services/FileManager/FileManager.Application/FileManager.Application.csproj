@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mappers\" />
     <Folder Include="Handlers\" />
     <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FileManager.Domain\FileManager.Domain.csproj" />
   </ItemGroup>
 
 </Project>

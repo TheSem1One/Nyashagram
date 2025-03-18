@@ -7,7 +7,7 @@ namespace FileManager.Infrastructure.Helpers
 {
     public class FileHelper(IWebHostEnvironment environment)
     {
-        private readonly string directory= ;
+        private readonly string directory="C:\\PetProject\\Nyashagram\\Services\\FileManager\\ImageFolder";
         private readonly IWebHostEnvironment _environment = environment;
         public List<Image> GetImageUrl(List<IFormFile> file)
         {
