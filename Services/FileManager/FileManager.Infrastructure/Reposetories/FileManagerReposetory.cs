@@ -5,25 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using FileManager.Domain.Entities;
 using FileManager.Domain.Reposetories;
+using FileManager.Infrastructure.Helpers;
 using FileManager.Infrastructure.Persistance;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace FileManager.Infrastructure.Reposetories
 {
-    public class FileManagerReposetory(ImageContext imageContext) : IFileManagerReposetory
+    public class FileManagerReposetory
+        (ImageContext imageContext, FileHelper fileHelper, IConfiguration configuration) : IFileManagerReposetory
     {
-        private readonly ImageContext _imageContext=imageContext;
+        private readonly IConfiguration _configuration = configuration;
+        private readonly FileHelper _fileHelper = fileHelper;
+        private readonly ImageContext _imageContext = imageContext;
+
         async Task<IEnumerable<string>> IFileManagerReposetory.CreateImage(List<IFormFile> image)
         {
-            List<Image> imageUrl = GetImageUrl(image);
+            List<Image> imageUrl = fileHelper.GetImageUrl(image);
             foreach (var formFile in imageUrl)
             {
-                await _imageContext.Images.AddAsync(image);
+                await _imageContext.Images.AddAsync(formFile);
                 await _imageContext.SaveChangesAsync();
             }
-           await _imageContext.Images.AddAsync(image);
-           await _imageContext.SaveChangesAsync();
-            return imageUrl;
+            await _imageContext.SaveChangesAsync();
+            return imageUrl.Select(img => img.ImageUrl).ToList();
         }
 
         async Task<bool> IFileManagerReposetory.DeleteImage(string imageUrl)
