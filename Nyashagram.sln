@@ -33,9 +33,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.API", "Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.Infrastructure", "Services\FileManager\FileManager.Infrastructure\FileManager.Infrastructure.csproj", "{5F6B2951-4FC4-45F3-B810-A56BA13EE875}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.Domain", "..\FileManager.Domain\FileManager.Domain.csproj", "{9F5C97E8-8964-4827-B5B7-B88A1878B812}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.Domain", ""C:\PetProject\Nyashagram\Services\FileManager\FileManager.Domain\FileManager.Domain.csproj"", "{9F5C97E8-8964-4827-B5B7-B88A1878B812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.Application", "..\FileManager.Application\FileManager.Application.csproj", "{AF3409F5-2816-4C85-ACF4-136633B09158}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.Application", "Services\FileManager\FileManager.Application\FileManager.Application.csproj", "{AF3409F5-2816-4C85-ACF4-136633B09158}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImageFolder", "ImageFolder", "{DFC48758-3EBA-4854-84A2-4B89891498B0}"
 EndProject
