@@ -2,6 +2,6 @@
 {
     public class FileManagerResponse
     {
-        public string? FileUrl { get; set; }
+        public string FileUrl { get; set; } = null!;
     }
 }

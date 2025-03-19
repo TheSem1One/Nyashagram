@@ -8,9 +8,6 @@ namespace FileManager.Application.Commands
     {
         public IFormFile FileUrl { get; set; } = null!;
 
-        public CreateFileCommand(IFormFile fileUrl)
-        {
-            FileUrl = fileUrl;
-        }
+     
     }
 }

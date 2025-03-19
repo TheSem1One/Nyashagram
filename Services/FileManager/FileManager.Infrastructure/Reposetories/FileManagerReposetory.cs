@@ -1,7 +1,9 @@
-﻿using FileManager.Domain.Entities.DTO;
+﻿using FileManager.Domain.Entities;
+using FileManager.Domain.Entities.DTO;
 using FileManager.Domain.Reposetories;
 using FileManager.Infrastructure.Helpers;
 using FileManager.Infrastructure.Persistance;
+using Microsoft.AspNetCore.Http;
 
 namespace FileManager.Infrastructure.Reposetories
 {
@@ -18,11 +20,12 @@ namespace FileManager.Infrastructure.Reposetories
             return true;
         }
 
-        async Task<string> IFileManagerReposetory.SaveFileAsync(FileDTO file)
+        async Task<string> IFileManagerReposetory.SaveFileAsync(IFormFile file)
         {
 
-            var nameFile = _fileHelper.SaveFile(file.Files);
-            await _imageContext.AddAsync(nameFile);
+            var nameFile = _fileHelper.SaveFile(file);
+            var image = new Image { ImageUrl = nameFile }; 
+            await _imageContext.Images.AddAsync(image);
             await _imageContext.SaveChangesAsync();
             return nameFile;
         }

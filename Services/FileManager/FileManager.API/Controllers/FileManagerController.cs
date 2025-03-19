@@ -14,9 +14,9 @@ namespace FileManager.API.Controllers
         [HttpPost]
         [Route("SaveFile")]
         [ProducesResponseType(typeof(FileManagerResponse), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<FileManagerResponse>> SaveFileAsync([FromBody] FileDTO fileDto)
+        public async Task<ActionResult<FileManagerResponse>> SaveFileAsync([FromForm] CreateFileCommand file)
         {
-            var result = await _mediator.Send(fileDto);
+            var result = await _mediator.Send(file);
             return Ok(result);
         }
     }

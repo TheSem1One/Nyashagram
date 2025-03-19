@@ -10,18 +10,17 @@ namespace FileManager.Application.Handlers
 {
     public class CreateFileCommandHandler : IRequestHandler<CreateFileCommand, FileManagerResponse>
     {
-        private IFileManagerReposetory _iFileManagerReposetory;
+        private IFileManagerReposetory _iFileManagerRepository;
         public CreateFileCommandHandler(IFileManagerReposetory fileManagerReposetory)
         {
-            _iFileManagerReposetory = fileManagerReposetory;
+            _iFileManagerRepository = fileManagerReposetory;
         }
 
         public async Task<FileManagerResponse> Handle(CreateFileCommand request, CancellationToken cancellationToken)
         {
-            var fileEntities = FileManagerMapper.Mapper.Map<FileDTO>(request);
 
-            var imageUrls = await _iFileManagerReposetory.SaveFileAsync(fileEntities);
-            return imageUrls;
+            var fileeUrl = await _iFileManagerRepository.SaveFileAsync(request.FileUrl);
+            return new FileManagerResponse{FileUrl = fileeUrl};
         }
 
 

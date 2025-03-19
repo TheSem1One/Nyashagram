@@ -5,7 +5,7 @@ namespace FileManager.Domain.Reposetories
 {
     public interface IFileManagerReposetory
     {
-        Task<string> SaveFileAsync(FileDTO file);
+        Task<string> SaveFileAsync(IFormFile file);
         Task<bool> DeleteImage(string fileNameWithExtension);
     }
 }
