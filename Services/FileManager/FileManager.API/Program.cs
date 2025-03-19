@@ -4,6 +4,7 @@ using FileManager.Infrastructure.Helpers;
 using FileManager.Infrastructure.Persistance;
 using FileManager.Infrastructure.Reposetories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,7 +44,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseStaticFiles(
+    new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath,
+                "Uploads")),
+        RequestPath = "/Resources"
+    });
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
