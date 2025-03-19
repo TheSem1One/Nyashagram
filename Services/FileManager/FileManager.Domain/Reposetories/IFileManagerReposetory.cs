@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileManager.Domain.Entities;
+﻿using FileManager.Domain.Entities.DTO;
 using Microsoft.AspNetCore.Http;
 
 namespace FileManager.Domain.Reposetories
 {
     public interface IFileManagerReposetory
     {
-        Task<IEnumerable<string>> CreateImage(List<IFormFile> files);
-        Task<bool> DeleteImage(string imageUrl);
+        Task<string> SaveFileAsync(FileDTO file);
+        Task<bool> DeleteImage(string fileNameWithExtension);
     }
 }

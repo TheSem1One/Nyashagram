@@ -1,8 +1,10 @@
 ﻿using FileManager.Application.Commands;
 using FileManager.Application.Mappers;
 using FileManager.Application.Responses;
+using FileManager.Domain.Entities.DTO;
 using FileManager.Domain.Reposetories;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace FileManager.Application.Handlers
 {
@@ -14,15 +16,14 @@ namespace FileManager.Application.Handlers
             _iFileManagerReposetory = fileManagerReposetory;
         }
 
-        public Task<FileManagerResponse> Handle(CreateFileCommand request, CancellationToken cancellationToken)
+        public async Task<FileManagerResponse> Handle(CreateFileCommand request, CancellationToken cancellationToken)
         {
-            var userEntity = FileManagerMapper.Mapper.Map<FileDTO>(request);
-            if (userEntity is null)
-            {
-                throw new ApplicationException("There is an issue with mapping while creating new User");
-            }
-            var authToken = await _iuser.CreateUser(userEntity);
-            return new AuthResponse { Token = authToken };
+            var fileEntities = FileManagerMapper.Mapper.Map<FileDTO>(request);
+
+            var imageUrls = await _iFileManagerReposetory.SaveFileAsync(fileEntities);
+            return imageUrls;
         }
+
+
     }
 }

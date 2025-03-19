@@ -1,40 +1,30 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using FileManager.Domain.Entities;
 
 namespace FileManager.Infrastructure.Helpers
 {
     public class FileHelper(IWebHostEnvironment environment)
     {
-        private readonly string directory="C:\\PetProject\\Nyashagram\\Services\\FileManager\\ImageFolder";
-        private readonly IWebHostEnvironment _environment = environment;
-        public List<Image> GetImageUrl(List<IFormFile> file)
+        public string SaveFile(IFormFile file)
         {
-            List<Image> imagePath = new List<Image>();
-            var wwwPath = _environment.WebRootPath;
-            var path = Path.Combine(wwwPath, directory);
+            if (file == null)
+            {
+                throw new ArgumentException(nameof(file));
+            }
+
+            var contentPath = environment.ContentRootPath;
+            var path = Path.Combine(contentPath, "Uploads");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
 
-            foreach (var url in file)
-            {
-                var exetsion = Path.GetExtension(url.FileName);
-                var newFileName = $"{Guid.NewGuid()}{exetsion}";
-                var fullPath = Path.Combine(path, newFileName);
-                using var fileStream = new FileStream(fullPath, FileMode.Create);
-                imagePath.Add(new Image
-                {
-                    ImageUrl = fullPath
-                });
-            }
 
-
-
-
-            return imagePath;
+            var fileName = $"{Guid.NewGuid().ToString()}";
+            var fileNamePath = Path.Combine(path, fileName);
+            using var stream = new FileStream(fileNamePath, FileMode.Create);
+            file.CopyToAsync(stream);
+            return fileName;
         }
     }
 }

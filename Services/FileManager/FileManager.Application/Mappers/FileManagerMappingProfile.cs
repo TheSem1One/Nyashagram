@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using FileManager.Application.Commands;
 using FileManager.Application.Responses;
-using FileManager.Domain.Entities;
 using FileManager.Domain.Entities.DTO;
+using Microsoft.AspNetCore.Http;
 
 namespace FileManager.Application.Mappers
 {
@@ -9,8 +10,8 @@ namespace FileManager.Application.Mappers
     {
         public FileManagerMappingProfile()
         {
-            CreateMap<Image, FileManagerResponse>().ReverseMap();
-            CreateMap(FileDTO,)
+            CreateMap<IFormFile, FileManagerResponse>().ReverseMap();
+            CreateMap<FileDTO, CreateFileCommand>().ReverseMap();
         }
     }
 }

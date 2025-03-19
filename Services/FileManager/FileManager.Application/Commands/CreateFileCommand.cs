@@ -1,18 +1,14 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileManager.Application.Responses;
+﻿using FileManager.Application.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace FileManager.Application.Commands
 {
     public class CreateFileCommand : IRequest<FileManagerResponse>
     {
-        public List<string> FileUrl { get; set; } = null!;
+        public IFormFile FileUrl { get; set; } = null!;
 
-        public CreateFileCommand(List<string> fileUrl)
+        public CreateFileCommand(IFormFile fileUrl)
         {
             FileUrl = fileUrl;
         }

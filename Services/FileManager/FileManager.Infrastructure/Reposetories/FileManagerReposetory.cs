@@ -1,40 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileManager.Domain.Entities;
+﻿using FileManager.Domain.Entities.DTO;
 using FileManager.Domain.Reposetories;
 using FileManager.Infrastructure.Helpers;
 using FileManager.Infrastructure.Persistance;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 
 namespace FileManager.Infrastructure.Reposetories
 {
     public class FileManagerReposetory
-        (ImageContext imageContext, FileHelper fileHelper, IConfiguration configuration) : IFileManagerReposetory
+        (ImageContext imageContext, FileHelper fileHelper) : IFileManagerReposetory
     {
-        private readonly IConfiguration _configuration = configuration;
-        private readonly FileHelper _fileHelper = fileHelper;
         private readonly ImageContext _imageContext = imageContext;
+        private readonly FileHelper _fileHelper = fileHelper;
 
-        async Task<IEnumerable<string>> IFileManagerReposetory.CreateImage(List<IFormFile> image)
+        async Task<bool> IFileManagerReposetory.DeleteImage(string fileName)
         {
-            List<Image> imageUrl = fileHelper.GetImageUrl(image);
-            foreach (var formFile in imageUrl)
-            {
-                await _imageContext.Images.AddAsync(formFile);
-                await _imageContext.SaveChangesAsync();
-            }
+            _imageContext.Remove(fileName);
             await _imageContext.SaveChangesAsync();
-            return imageUrl.Select(img => img.ImageUrl).ToList();
+            return true;
         }
 
-        async Task<bool> IFileManagerReposetory.DeleteImage(string imageUrl)
+        async Task<string> IFileManagerReposetory.SaveFileAsync(FileDTO file)
         {
-            _imageContext.Remove(imageUrl);
-            return true;
+
+            var nameFile = _fileHelper.SaveFile(file.Files);
+            await _imageContext.AddAsync(nameFile);
+            await _imageContext.SaveChangesAsync();
+            return nameFile;
         }
     }
 }
