@@ -12,36 +12,47 @@ namespace Post.Infrastructure.Repositories
             _context = context;
         }
 
-        async Task<IEnumerable<Domain.Entities.Post>> IPostReposetory.GetAllPost()
+        async Task<IEnumerable<Domain.Entities.Post>> IPostReposetory.GetPost()
         {
             return await _context
                 .Post
                 .Find(post => true)
                 .ToListAsync();
         }
-
-        async Task<Domain.Entities.Post> IPostReposetory.GetPost(string id)
+        async Task<IEnumerable<Domain.Entities.Post>> IPostReposetory.GetPostByNickName(string nickName)
+        {
+            return await _context.Post
+                .Find(p => p.CreatorNickName.ToLower() == nickName.ToLower())
+                .ToListAsync();
+        }
+        async Task<Domain.Entities.Post> IPostReposetory.GetPostById(string id)
         {
             return await _context
                 .Post
                 .Find(post => post.PostId == id)
                 .FirstOrDefaultAsync();
-            ;
         }
 
-        Task<Domain.Entities.Post> IPostReposetory.CreatePost(Domain.Entities.Post post)
+        async Task<Domain.Entities.Post> IPostReposetory.CreatePost(Domain.Entities.Post post)
         {
-            throw new NotImplementedException();
+            await _context.Post.InsertOneAsync(post);
+            return post;
         }
 
-        Task<bool> IPostReposetory.DeletePost(string id)
+        async Task<bool> IPostReposetory.DeletePost(string id)
         {
-            throw new NotImplementedException();
+            var deletedPost = await _context.Post.DeleteOneAsync(p => p.PostId == id);
+            return deletedPost.IsAcknowledged & deletedPost.DeletedCount > 0;
         }
 
-        Task<bool> IPostReposetory.UpdateProduct(Domain.Entities.Post post)
+        async Task<bool> IPostReposetory.UpdateProduct(Domain.Entities.Post post)
         {
-            throw new NotImplementedException();
+            var updatedPost = await _context
+                .Post
+                .ReplaceOneAsync(p => p.PostId == post.PostId, post);
+            return updatedPost.IsAcknowledged && updatedPost.ModifiedCount > 0;
         }
+
+
     }
 }
