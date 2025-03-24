@@ -10,8 +10,8 @@ namespace Post.Application.Handles
 {
     public class DeletePostHandler : IRequestHandler<DeletePostQuery, DeletePostResponse>
     {
-        private readonly IPostReposetory _postReposetory;
-        public DeletePostHandler(IPostReposetory postReposetory, IMapper mapper)
+        private readonly IPostRepository _postReposetory;
+        public DeletePostHandler(IPostRepository postReposetory, IMapper mapper)
         {
             _postReposetory = postReposetory;
         }

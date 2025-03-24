@@ -29,7 +29,7 @@ namespace Post.API.Controllers
         [Route("[action]/{NickName}", Name = "GetPostByCreator")]
         [ProducesResponseType(typeof(GetPostByIdResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetPostResponse>> GetPostByCreator(string NickName)
+        public async Task<ActionResult<IList<GetPostResponse>>> GetPostByCreator(string NickName)
         {
             var query = new GetPostByCreatorQuery { NickName = NickName };
             var result = await _mediator.Send(query);
@@ -40,7 +40,7 @@ namespace Post.API.Controllers
         [Route("GetPost")]
         [ProducesResponseType(typeof(GetPostResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetPostResponse>> GetPost()
+        public async Task<ActionResult<IList<GetPostResponse>>> GetPost()
         {
             var query = new GetPostQuery();
             var result = await _mediator.Send(query);
@@ -52,6 +52,7 @@ namespace Post.API.Controllers
         [Route("[action]/{Id}", Name = "GetPostById")]
         [ProducesResponseType(typeof(GetPostByIdResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
+
         public async Task<ActionResult<GetPostByIdResponse>> GetPostById(string Id)
         {
             var query = new GetPostByIdQuery { PostId = Id };

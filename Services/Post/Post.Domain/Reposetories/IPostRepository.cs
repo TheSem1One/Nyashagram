@@ -2,13 +2,12 @@
 
 namespace Post.Domain.Reposetories
 {
-    public interface IPostReposetory
+    public interface IPostRepository
     {
         Task<IEnumerable<Entities.Post>> GetPost();
         Task<IEnumerable<Entities.Post>> GetPostByNickName(string nickName);
         Task<Entities.Post> GetPostById(string id);
         Task<string> CreatePost(PostDTO postDTO);
-        Task<bool> UpdateProduct(Entities.Post post);
         Task<bool> DeletePost(string id);
     }
 }

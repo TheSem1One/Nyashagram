@@ -10,8 +10,8 @@ namespace Post.Application.Handles
 {
     public class CreatePostHandler : IRequestHandler<CreatePostCommand, CreatePostResponse>
     {
-        private readonly IPostReposetory _postReposetory;
-        public CreatePostHandler(IPostReposetory postReposetory, IMapper mapper)
+        private readonly IPostRepository _postReposetory;
+        public CreatePostHandler(IPostRepository postReposetory, IMapper mapper)
         {
             _postReposetory = postReposetory;
         }

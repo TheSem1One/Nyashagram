@@ -1,6 +1,14 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Post.Application.Commands;
+using Post.Application.Handles;
+using Post.Application.Queries;
+using Post.Application.Responses;
+using Post.Domain.Reposetories;
 using Post.Infrastructure.Data;
+using Post.Infrastructure.Repositories;
 
 
 namespace Post.API
@@ -16,6 +24,12 @@ namespace Post.API
             builder.Services.AddControllers();
             builder.Services.Configure<MongoDbSettings>(
                 builder.Configuration.GetSection(nameof(MongoDbSettings)));
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
+            //RegisterMediator 
+            builder.Services.AddTransient<IPostRepository, PostRepositories>();
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+
             builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
             {
                 corsPolicyBuilder

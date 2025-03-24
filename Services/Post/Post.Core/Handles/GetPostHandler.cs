@@ -9,8 +9,8 @@ namespace Post.Application.Handles
 {
     public class GetPostHandler : IRequestHandler<GetPostQuery, IList<GetPostResponse>>
     {
-        private readonly IPostReposetory _postReposetory;
-        public GetPostHandler(IPostReposetory postReposetory, IMapper mapper)
+        private readonly IPostRepository _postReposetory;
+        public GetPostHandler(IPostRepository postReposetory, IMapper mapper)
         {
             _postReposetory = postReposetory;
         }
