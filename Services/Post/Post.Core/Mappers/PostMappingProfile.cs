@@ -12,7 +12,7 @@ namespace Post.Application.Mappers
     {
         public PostMappingProfile()
         {
-            CreateMap<Domain.Entities.Post, PostResponse>().ReverseMap();
+            CreateMap<Domain.Entities.Post, GetPostResponse>().ReverseMap();
         }
     }
 }
