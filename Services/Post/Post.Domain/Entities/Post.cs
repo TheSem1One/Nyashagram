@@ -22,10 +22,10 @@ namespace Post.Domain.Entities
         public DateTime CreateDateTime { get; set; }
 
         [BsonElement("Comments")]
-        public List<Comment> Comments { get; set; }
+        public List<Comment>? Comments { get; set; }
 
         [BsonElement("Likes")]
-        public Like Likes { get; set; }
+        public Like? Likes { get; set; }
 
     }
 }

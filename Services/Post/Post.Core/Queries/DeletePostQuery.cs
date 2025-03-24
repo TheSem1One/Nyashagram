@@ -8,7 +8,7 @@ using Post.Application.Responses;
 
 namespace Post.Application.Queries
 {
-    public class GetPostByIdQuerry : IRequest<GetPostByIdResponse>
+    public class DeletePostQuery : IRequest<DeletePostResponse>
     {
         public string PostId { get; set; }
     }

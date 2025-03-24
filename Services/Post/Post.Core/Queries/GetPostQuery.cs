@@ -4,7 +4,7 @@ using Post.Domain.Reposetories;
 
 namespace Post.Application.Queries
 {
-    public class GetPostQuerry : IRequest<IList<GetPostResponse>>
+    public class GetPostQuery : IRequest<IList<GetPostResponse>>
     {
          
     }

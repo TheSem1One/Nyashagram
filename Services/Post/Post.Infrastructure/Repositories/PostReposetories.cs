@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using Post.Domain.Entities.DTO;
 using Post.Domain.Reposetories;
 using Post.Infrastructure.Presistence;
 
@@ -33,10 +34,17 @@ namespace Post.Infrastructure.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        async Task<Domain.Entities.Post> IPostReposetory.CreatePost(Domain.Entities.Post post)
+        async Task<string> IPostReposetory.CreatePost(PostDTO postDTO)
         {
-            await _context.Post.InsertOneAsync(post);
-            return post;
+            var post = new Domain.Entities.Post
+            {
+                CreatorNickName = postDTO.NickName,
+                PostImageUrl = postDTO.ImageUrl,
+                Descriptions = postDTO.Description,
+                CreateDateTime = DateTime.Now
+            };
+           await _context.Post.InsertOneAsync(post);
+            return post.PostId;
         }
 
         async Task<bool> IPostReposetory.DeletePost(string id)

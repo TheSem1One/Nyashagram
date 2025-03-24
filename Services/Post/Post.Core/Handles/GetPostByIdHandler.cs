@@ -7,7 +7,7 @@ using Post.Domain.Reposetories;
 
 namespace Post.Application.Handles
 {
-    public class GetPostByIdHandler : IRequestHandler<GetPostByIdQuerry, GetPostByIdResponse>
+    public class GetPostByIdHandler : IRequestHandler<GetPostByIdQuery, GetPostByIdResponse>
     {
 
         private readonly IPostReposetory _postReposetory;
@@ -15,7 +15,7 @@ namespace Post.Application.Handles
         {
             _postReposetory = postReposetory;
         }
-        public async Task<GetPostByIdResponse> Handle(GetPostByIdQuerry request, CancellationToken cancellationToken)
+        public async Task<GetPostByIdResponse> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
         {
             var post = await _postReposetory.GetPostById(request.PostId);
             var postResponse = PostMapper.Mapper.Map<Domain.Entities.Post, GetPostByIdResponse>(post);
