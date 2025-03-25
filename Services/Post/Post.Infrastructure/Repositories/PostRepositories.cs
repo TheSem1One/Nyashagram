@@ -8,7 +8,7 @@ namespace Post.Infrastructure.Repositories
     public class PostRepositories : IPostRepository
     {
         private readonly IPostContext _context;
-        PostRepositories(IPostContext context)
+        public PostRepositories(IPostContext context)
         {
             _context = context;
         }

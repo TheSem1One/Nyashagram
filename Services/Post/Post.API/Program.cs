@@ -8,6 +8,7 @@ using Post.Application.Queries;
 using Post.Application.Responses;
 using Post.Domain.Reposetories;
 using Post.Infrastructure.Data;
+using Post.Infrastructure.Presistence;
 using Post.Infrastructure.Repositories;
 
 
@@ -26,7 +27,9 @@ namespace Post.API
                 builder.Configuration.GetSection(nameof(MongoDbSettings)));
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             //RegisterMediator 
+            builder.Services.AddTransient<IPostContext, PostContext>();
             builder.Services.AddTransient<IPostRepository, PostRepositories>();
+           
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 

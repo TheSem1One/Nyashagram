@@ -15,6 +15,7 @@ namespace Post.API.Controllers
         {
             _mediator = mediator;
         }
+
         [HttpPost]
         [Route("CreatePost")]
         [ProducesResponseType(typeof(CreatePostResponse), (int)HttpStatusCode.OK)]
