@@ -3,6 +3,6 @@
     public class GetPostResponse
     {
         public string PostId { get; set; }
-        public string ImageUrl { get; set; }
+        public string PostImageUrl { get; set; }
     }
 }

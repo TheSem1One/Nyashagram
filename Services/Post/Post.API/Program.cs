@@ -1,4 +1,5 @@
-using System.Reflection;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -25,12 +26,17 @@ namespace Post.API
             builder.Services.AddControllers();
             builder.Services.Configure<MongoDbSettings>(
                 builder.Configuration.GetSection(nameof(MongoDbSettings)));
+            // У Startup.cs в ConfigureServices
+
+
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePostCommand).Assembly));
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             //RegisterMediator 
             builder.Services.AddTransient<IPostContext, PostContext>();
+            builder.Services.AddScoped<IPostRepository, PostRepositories>();
             builder.Services.AddTransient<IPostRepository, PostRepositories>();
            
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            
 
 
             builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>

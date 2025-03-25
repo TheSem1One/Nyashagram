@@ -4,6 +4,7 @@ using System.Net;
 using Post.Application.Commands;
 using Post.Application.Queries;
 using Post.Application.Responses;
+using Post.Domain.Entities.DTO;
 
 namespace Post.API.Controllers
 {
@@ -19,9 +20,9 @@ namespace Post.API.Controllers
         [HttpPost]
         [Route("CreatePost")]
         [ProducesResponseType(typeof(CreatePostResponse), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreatePostResponse>> CreatePost([FromBody] CreatePostCommand postCommand)
+        public async Task<ActionResult<CreatePostResponse>> CreatePost([FromBody] PostDTO postDto)
         {
-            var result = await _mediator.Send(postCommand);
+            var result = await _mediator.Send(new CreatePostCommand(){Description = postDto.Description,ImageUrl = postDto.ImageUrl,NickName = postDto.NickName});
             return Ok(result);
         }
 
