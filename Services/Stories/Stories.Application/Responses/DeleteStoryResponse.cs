@@ -2,6 +2,6 @@
 {
     public class DeleteStoryResponse
     {
-        public bool Succes { get; set; }
+        public bool Status { get; set; }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Stories.Application.Mappers
 {
-    public class StoryMapper
+    public static class StoryMapper
     {
         private static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(() =>
         {

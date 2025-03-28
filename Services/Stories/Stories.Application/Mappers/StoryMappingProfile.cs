@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using Stories.Application.Commands;
+using Stories.Application.Queries;
+using Stories.Domain.Entity.DTO;
 
 namespace Stories.Application.Mappers
 {
     public class StoryMappingProfile : Profile
     {
-        StoryMappingProfile()
+        public StoryMappingProfile()
         {
-            CreateMap<>();
+            CreateMap<ShortsDTO, CreateStoryCommand>().ReverseMap();
+            CreateMap<string, GetStoryByCreatorQuery>().ReverseMap();
         }
         
     }
