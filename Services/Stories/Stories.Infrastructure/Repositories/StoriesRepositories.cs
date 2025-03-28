@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using Stories.Domain.Entity;
 using Stories.Domain.Entity.DTO;
 using Stories.Domain.Repositories;
@@ -27,7 +28,9 @@ namespace Stories.Infrastructure.Repositories
 
         async Task<bool> IStoriesRepository.DeleteStories(string id)
         {
-            var deleteShorts = await _context.Shorts.DeleteOneAsync(s => s.StoriesId == id);
+            var deleteShorts = await _context
+                .Shorts
+                .DeleteOneAsync(s=>s.StoriesId== id);
             return deleteShorts.IsAcknowledged & deleteShorts.DeletedCount > 0;
         }
 

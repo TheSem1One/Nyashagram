@@ -22,18 +22,18 @@ namespace Stories.API.Controllers
         [ProducesResponseType(typeof(CreateStoryResponse), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<CreateStoryResponse>> CreatePost([FromBody] ShortsDTO shortDto)
         {
-            var result = await _mediator.Send(new CreateStoryCommand() {  ImageUrl = shortDto.StoriesImageUrl, NickName = shortDto.CreatorNickName });
+            var result = await _mediator.Send(new CreateStoryCommand() {  StoriesImageUrl = shortDto.StoriesImageUrl, CreatorNickName = shortDto.CreatorNickName });
             return Ok(result);
         }
 
 
         [HttpGet]
-        [Route("GetPostByCreator")]
+        [Route("GetStoryByCreator")]
         [ProducesResponseType(typeof(GetStoryByCreatorQuery), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<IList<GetStoryByCreatorQuery>>> GetPostByCreator([FromBody]string NickName)
+        public async Task<ActionResult<IList<GetStoryByCreatorQuery>>> GetPostByCreator([FromHeader] string nickName)
         {
-            var query = new GetStoryByCreatorQuery { NickName = NickName };
+            var query = new GetStoryByCreatorQuery { NickName = nickName };
             var result = await _mediator.Send(query);
             return Ok(result);
         }
@@ -51,12 +51,12 @@ namespace Stories.API.Controllers
         }
 
         [HttpDelete]
-        [Route("[action]/{id}", Name = "DeletePost")]
+        [Route("DeletePost")]
         [ProducesResponseType(typeof(DeleteStoryResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<DeleteStoryResponse>> DeletePost(string Id)
+        public async Task<ActionResult<DeleteStoryResponse>> DeletePost([FromBody] string Id)
         {
-            var query = new DeleteStoryQuery() { StoryId= Id };
+            var query = new DeleteStoryCommand() { StoryId= Id };
             var result = await _mediator.Send(query);
             return Ok(result);
         }

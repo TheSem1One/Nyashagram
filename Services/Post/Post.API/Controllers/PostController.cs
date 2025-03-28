@@ -63,12 +63,12 @@ namespace Post.API.Controllers
         }
 
         [HttpDelete]
-        [Route("[action]/{id}", Name = "DeletePost")]
+        [Route("DeletePost")]
         [ProducesResponseType(typeof(DeletePostResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<DeletePostResponse>> DeletePost(string Id)
+        public async Task<ActionResult<DeletePostResponse>> DeletePost([FromBody]string Id)
         {
-            var query = new DeletePostQuery { PostId = Id };
+            var query = new DeletePostCommand() { PostId = Id };
             var result = await _mediator.Send(query);
             return Ok(result);
         }
