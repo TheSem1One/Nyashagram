@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  auth.database:
+    image: postgres:latest
+    container_name: auth.database
+    environment:
+      POSTGRES_DB: cutiegram
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - 8001:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  auth.api:
+    container_name: auth.api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - auth.database
+    build:
+      context: .
+      dockerfile: Services/Auth/Auth.API/Dockerfile
+    ports:
+     - 8070:8080
+
+volumes:
+  postgres-data:
