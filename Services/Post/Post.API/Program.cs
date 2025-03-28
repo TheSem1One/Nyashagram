@@ -1,12 +1,6 @@
 ﻿using System.Reflection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Post.Application.Commands;
-using Post.Application.Handles;
-using Post.Application.Queries;
-using Post.Application.Responses;
 using Post.Domain.Reposetories;
 using Post.Infrastructure.Data;
 using Post.Infrastructure.Presistence;

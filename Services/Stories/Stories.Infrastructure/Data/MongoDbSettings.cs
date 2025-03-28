@@ -1,4 +1,4 @@
-﻿namespace Post.Infrastructure.Data
+﻿namespace Stories.Infrastructure.Data
 {
     public class MongoDbSettings
     {
