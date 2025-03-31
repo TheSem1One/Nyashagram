@@ -1,8 +1,8 @@
 using FileManager.Application.Commands;
 using FileManager.Domain.Reposetories;
 using FileManager.Infrastructure.Helpers;
-using FileManager.Infrastructure.Persistance;
-using FileManager.Infrastructure.Reposetories;
+using FileManager.Infrastructure.Persistence;
+using FileManager.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
@@ -32,9 +32,9 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
         .AllowAnyOrigin();
 }));
 builder.Services.AddTransient<ImageContext>();
-builder.Services.AddTransient<IFileManagerReposetory, FileManagerReposetory>();
+builder.Services.AddTransient<IFileManagerReposetory, FileManagerRepository>();
 builder.Services.AddScoped<FileHelper>();
-builder.Services.AddTransient<IFileManagerReposetory, FileManagerReposetory>();
+builder.Services.AddTransient<IFileManagerReposetory, FileManagerRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

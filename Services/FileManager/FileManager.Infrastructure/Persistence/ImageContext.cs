@@ -2,13 +2,10 @@
 using FileManager.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FileManager.Infrastructure.Persistance
+namespace FileManager.Infrastructure.Persistence
 {
-    public class ImageContext : DbContext
+    public class ImageContext(DbContextOptions options) : DbContext(options)
     {
-        public ImageContext(DbContextOptions options) : base(options)
-        {
-        }
         public DbSet<Image> Images { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -6,7 +6,7 @@ namespace FileManager.Infrastructure.Persistance
 {
     public class DatabaseConfig(IConfiguration configuration) : DbContext
     {
-        protected readonly IConfiguration _configuration = configuration;
+        private readonly IConfiguration _configuration = configuration;
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
