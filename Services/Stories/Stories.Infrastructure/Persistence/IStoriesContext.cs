@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using Stories.Domain.Entity;
 
-namespace Stories.Infrastructure.Presistence
+namespace Stories.Infrastructure.Persistence
 {
     public interface IStoriesContext
     {

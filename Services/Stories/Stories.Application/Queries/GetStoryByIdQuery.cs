@@ -5,7 +5,7 @@ namespace Stories.Application.Queries
 {
     public class GetStoryByIdQuery : IRequest<GetStoryByIdResponse>
     {
-        public string StoryId { get; set; }
+        public string StoryId { get; set; } = null!;
     }
 }
 

@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
- 
 using Stories.Domain.Entity;
 
-namespace Stories.Infrastructure.Presistence
+namespace Stories.Infrastructure.Persistence
 {
-    public class StoriesContext: IStoriesContext
+    public class StoriesContext : IStoriesContext
     {
         private readonly IConfiguration _iConfiguration;
         public IMongoCollection<Short> Shorts { get; set; }
