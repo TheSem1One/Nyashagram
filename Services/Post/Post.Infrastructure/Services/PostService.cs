@@ -1,32 +1,28 @@
 ﻿using MongoDB.Driver;
 using Post.Domain.Entities.DTO;
-using Post.Domain.Reposetories;
-using Post.Infrastructure.Presistence;
+using Post.Domain.Repositories;
+using Post.Infrastructure.Persistence;
 
-namespace Post.Infrastructure.Repositories
+namespace Post.Infrastructure.Services
 {
-    public class PostRepositories : IPostRepository
+    public class PostService(IPostContext context) : IPostRepository
     {
-        private readonly IPostContext _context;
-        public PostRepositories(IPostContext context)
-        {
-            _context = context;
-        }
+        private readonly IPostContext _context = context;
 
-        async Task<IEnumerable<Domain.Entities.Post>> IPostRepository.GetPost()
+        public async Task<IEnumerable<Domain.Entities.Post>> GetPost()
         {
             return await _context
                 .Post
                 .Find(post => true)
                 .ToListAsync();
         }
-        async Task<IEnumerable<Domain.Entities.Post>> IPostRepository.GetPostByNickName(string nickName)
+        public async Task<IEnumerable<Domain.Entities.Post>> GetPostByNickName(string nickName)
         {
             return await _context.Post
                 .Find(p => p.CreatorNickName.ToLower() == nickName.ToLower())
                 .ToListAsync();
         }
-        async Task<Domain.Entities.Post> IPostRepository.GetPostById(string id)
+        public async Task<Domain.Entities.Post> GetPostById(string id)
         {
             return await _context
                 .Post
@@ -34,27 +30,23 @@ namespace Post.Infrastructure.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        async Task<string> IPostRepository.CreatePost(PostDTO postDTO)
+        public async Task<string> CreatePost(PostDto postDto)
         {
             var post = new Domain.Entities.Post
             {
-                CreatorNickName = postDTO.NickName,
-                PostImageUrl = postDTO.ImageUrl,
-                Descriptions = postDTO.Description,
+                CreatorNickName = postDto.NickName,
+                ImageUrl = postDto.ImageUrl,
+                Descriptions = postDto.Description,
                 CreateDateTime = DateTime.Now
             };
             await _context.Post.InsertOneAsync(post);
             return post.PostId;
         }
 
-        async Task<bool> IPostRepository.DeletePost(string id)
+        public async Task<bool> DeletePost(string id)
         {
             var deletedPost = await _context.Post.DeleteOneAsync(p => p.PostId == id);
             return deletedPost.IsAcknowledged & deletedPost.DeletedCount > 0;
         }
-
-        
-
-
     }
 }

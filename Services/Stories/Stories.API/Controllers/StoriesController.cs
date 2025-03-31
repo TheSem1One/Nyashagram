@@ -23,13 +23,7 @@ namespace Stories.API.Controllers
         }
 
 
-        [HttpGet("{nickName}/stories")]
-        public async Task<ActionResult<IList<GetStoryByCreatorQuery>>> GetStoryByCreator([FromRoute] string nickName)
-        {
-            var query = new GetStoryByCreatorQuery { NickName = nickName };
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
+      
 
         [HttpGet("{id}")]
 
