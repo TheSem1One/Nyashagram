@@ -1,9 +1,9 @@
-﻿namespace Auth.Domain.DTO
+﻿namespace User.Domain.DTO
 {
-    public class RegisterDTO
+    public class RegisterDto
     {
-        public string NickName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string NickName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
     }
 }

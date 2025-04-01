@@ -1,7 +1,7 @@
-﻿using Auth.Application.Responses;
+﻿using User.Application.Responses;
 using MediatR;
 
-namespace Auth.Application.Commands
+namespace User.Application.Commands
 {
     public class CreateUserCommand : IRequest<AuthResponse>
     {

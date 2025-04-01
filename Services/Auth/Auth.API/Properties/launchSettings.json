@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Auth.API": {
+    "User.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

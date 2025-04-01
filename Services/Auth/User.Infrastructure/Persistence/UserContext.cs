@@ -1,15 +1,12 @@
 ﻿using System.Reflection;
-using Auth.Domain.Entities;
+using User.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Auth.Infrastructure.Persistence
+namespace User.Infrastructure.Persistence
 {
-    public class UserContext : DbContext
+    public class UserContext(DbContextOptions options) : DbContext(options)
     {
-        public UserContext(DbContextOptions options) : base(options)
-        {
-        }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User.Domain.Entities.User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

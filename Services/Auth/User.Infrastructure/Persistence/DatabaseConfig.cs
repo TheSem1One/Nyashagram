@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Auth.Infrastructure.Persistence
+namespace User.Infrastructure.Persistence
 {
     public class DatabaseConfig(IConfiguration configuration) : DbContext
     {

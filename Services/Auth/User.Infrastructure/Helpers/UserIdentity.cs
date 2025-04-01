@@ -1,24 +1,17 @@
-﻿using Auth.Domain.DTO;
-using Auth.Infrastructure.Persistence;
+﻿using User.Domain.DTO;
+using User.Infrastructure.Persistence;
 
-namespace Auth.Infrastructure.Helpers
+namespace User.Infrastructure.Helpers
 {
-    public class UserIdentity
+    public class UserIdentity(UserContext db, HashPassword hashPassword)
     {
-        private readonly UserContext _db;
-        private readonly HashPassword _hashPassword;
-
-        public UserIdentity(UserContext db, HashPassword hashPassword)
-        {
-            _db = db;
-            _hashPassword = hashPassword;
-
-        }
+        private readonly UserContext _db = db;
+        private readonly HashPassword _hashPassword = hashPassword;
 
         public UserDTO GetJwtUser(string email)
         {
             var user = _db.Users.SingleOrDefault(user => user.email.ToLower() == email.ToLower());
-            var userDTO = new UserDTO
+            var userDto = new UserDTO
             {
                 NickName = user.nickName,
                 BirthDate = user.birthDate,
@@ -29,7 +22,7 @@ namespace Auth.Infrastructure.Helpers
                 Subscribers = user.subscribers,
                 PrivateProfile = user.privateProfile
             };
-            return userDTO;
+            return userDto;
 
         }
 

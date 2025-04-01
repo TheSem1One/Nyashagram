@@ -1,11 +1,11 @@
-﻿using Auth.Infrastructure.Persistence;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
+using User.Infrastructure.Persistence;
 
-namespace Auth.Infrastructure.Helpers
+namespace User.Infrastructure.Helpers
 {
-    public static class DBExtension
+    public static class DbExtension
     {
         public static void ApplyMigration(this IApplicationBuilder app)
         {
@@ -13,7 +13,7 @@ namespace Auth.Infrastructure.Helpers
             using UserContext dbContext =
                 scope.ServiceProvider.GetRequiredService<UserContext>();
 
-            dbContext.Database.Migrate();
+           // dbContext.Database.Migrate();
         }
     }
 }

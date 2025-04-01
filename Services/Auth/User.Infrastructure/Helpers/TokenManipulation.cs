@@ -1,10 +1,10 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Auth.Domain.DTO;
+using User.Domain.DTO;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Auth.Infrastructure.Helpers
+namespace User.Infrastructure.Helpers
 {
     public class TokenManipulation(UserIdentity userIdentity, ClaimCreator claim)
     {

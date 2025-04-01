@@ -1,12 +1,17 @@
-using Auth.Application.Queries;
-using Auth.Domain.Repositories;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using User.Application.Queries;
+using User.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Auth.Infrastructure.Persistence;
-using Auth.Infrastructure.Helpers;
-using Auth.Infrastructure.Reposetories;
+using User.API.Transformers;
+using User.Infrastructure.Persistence;
+using User.Infrastructure.Helpers;
+using User.Infrastructure.Repositories;
+using System.Text.Json.Serialization;
 
-namespace Auth.API
+namespace User.API
 {
     public class Program
     {
@@ -28,7 +33,16 @@ namespace Auth.API
             builder.Services.AddScoped<HashPassword>();
             builder.Services.AddScoped<UserIdentity>();
             builder.Services.AddScoped<ClaimCreator>();
-
+            builder.Services
+                .AddControllers(options =>
+                {
+                    options.Filters.Add(new ProducesAttribute(MediaTypeNames.Application.Json));
+                    options.Conventions.Add(new RouteTokenTransformerConvention(new ToKebabParameterTransformer()));
+                })
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
             builder.Services.AddDbContext<UserContext>(opts =>
                 opts
                     .UseNpgsql(builder.Configuration.GetConnectionString("ApiDatabase"))

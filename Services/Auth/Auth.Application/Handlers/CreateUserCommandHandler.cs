@@ -1,30 +1,24 @@
-﻿using Auth.Application.Commands;
-using Auth.Application.Mappers;
-using Auth.Application.Responses;
-using Auth.Domain.DTO;
-using Auth.Domain.Repositories;
+﻿using User.Application.Commands;
+using User.Application.Mappers;
+using User.Application.Responses;
+using User.Domain.DTO;
+using User.Domain.Repositories;
 using MediatR;
 
-namespace Auth.Application.Handlers
+namespace User.Application.Handlers
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, AuthResponse>
+    public class CreateUserCommandHandler(IAuth user) : IRequestHandler<CreateUserCommand, AuthResponse>
     {
-        private IAuth _iuser;
-        public CreateUserCommandHandler(IAuth iuser)
-        {
-            _iuser = iuser;
-        }
-
-
+        private readonly IAuth _user = user;
 
         public async Task<AuthResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var userEntity = UserMapper.Mapper.Map<RegisterDTO>(request);
+            var userEntity = UserMapper.Mapper.Map<RegisterDto>(request);
             if (userEntity is null)
             {
                 throw new ApplicationException("There is an issue with mapping while creating new User");
             }
-            var authToken = await _iuser.CreateUser(userEntity);
+            var authToken = await _user.CreateUser(userEntity);
             return new AuthResponse { Token = authToken };
         }
     }

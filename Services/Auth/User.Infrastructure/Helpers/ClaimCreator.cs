@@ -1,6 +1,6 @@
-﻿using Auth.Domain.DTO;
+﻿using User.Domain.DTO;
 
-namespace Auth.Infrastructure.Helpers
+namespace User.Infrastructure.Helpers
 {
     public class ClaimCreator
     {
