@@ -6,9 +6,9 @@ namespace Post.Domain.Entities
     public class Comment
     {
         [BsonElement("CommentatorNickName"), BsonRepresentation(BsonType.String)]
-        public string ComentatorNickName { get; set; }
+        public string? ComentatorNickName { get; set; }
 
         [BsonElement("Notes"), BsonRepresentation(BsonType.String)]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

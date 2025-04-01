@@ -1,10 +1,9 @@
-﻿using System.Reflection;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using Post.Application.Commands;
-using Post.Domain.Reposetories;
+using Post.Domain.Repositories;
 using Post.Infrastructure.Data;
-using Post.Infrastructure.Presistence;
-using Post.Infrastructure.Repositories;
+using Post.Infrastructure.Persistence;
+using Post.Infrastructure.Services;
 
 
 namespace Post.API
@@ -27,8 +26,8 @@ namespace Post.API
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             //RegisterMediator 
             builder.Services.AddTransient<IPostContext, PostContext>();
-            builder.Services.AddScoped<IPostRepository, PostRepositories>();
-            builder.Services.AddTransient<IPostRepository, PostRepositories>();
+            builder.Services.AddScoped<IPostRepository, PostService>();
+            builder.Services.AddTransient<IPostRepository, PostService>();
            
             
 

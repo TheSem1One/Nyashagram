@@ -5,6 +5,6 @@ namespace Post.Application.Queries
 {
     public class GetPostByCreatorQuery : IRequest<IList<GetPostResponse>>
     {
-        public string NickName { get; set; }
+        public string NickName { get; set; } = null!;
     }
 }

@@ -1,25 +1,20 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Post.Application.Commands;
 using Post.Application.Mappers;
 using Post.Application.Responses;
 using Post.Domain.Entities.DTO;
-using Post.Domain.Reposetories;
+using Post.Domain.Repositories;
 
 namespace Post.Application.Handles
 {
-    public class CreatePostHandler : IRequestHandler<CreatePostCommand, CreatePostResponse>
+    public class CreatePostHandler(IPostRepository postRepository) : IRequestHandler<CreatePostCommand, CreatePostResponse>
     {
-        private readonly IPostRepository _postReposetory;
-        public CreatePostHandler(IPostRepository postReposetory, IMapper mapper)
-        {
-            _postReposetory = postReposetory;
-        }
+        private readonly IPostRepository _postRepository = postRepository;
 
         public async Task<CreatePostResponse> Handle(CreatePostCommand request, CancellationToken cancellationToken)
         {
-            var map = PostMapper.Mapper.Map<CreatePostCommand, PostDTO>(request);
-            var creatingPost = await _postReposetory.CreatePost(map);
+            var map = PostMapper.Mapper.Map<CreatePostCommand, PostDto>(request);
+            var creatingPost = await _postRepository.CreatePost(map);
             return new CreatePostResponse { PostId = creatingPost };
         }
     }

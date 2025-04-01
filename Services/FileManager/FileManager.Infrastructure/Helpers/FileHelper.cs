@@ -1,5 +1,4 @@
-﻿using FileManager.Domain.Entities;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 namespace FileManager.Infrastructure.Helpers

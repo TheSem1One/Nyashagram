@@ -7,13 +7,13 @@ namespace Stories.Domain.Entity
     {
         [BsonId]
         [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-        public string? StoriesId { get; set; }
+        public string? StoryId { get; set; }
 
         [BsonElement("StoriesImageUrl"), BsonRepresentation(BsonType.String)]
-        public string StoriesImageUrl { get; set; }
+        public string StoryImageUrl { get; set; } = null!;
 
         [BsonElement("CreatorNickName"), BsonRepresentation(BsonType.String)]
-        public string CreatorNickName { get; set; }
+        public string CreatorNickName { get; set; } = null!;
 
         [BsonElement("ExpireTime"), BsonRepresentation(BsonType.DateTime)]
         public DateTime ExpireTime { get; set; }

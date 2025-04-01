@@ -1,18 +1,18 @@
-﻿using Auth.Application.Commands;
-using Auth.Application.Responses;
-using Auth.Domain.DTO;
-using Auth.Domain.Entities;
+﻿using User.Application.Commands;
+using User.Application.Responses;
+using User.Domain.DTO;
 using AutoMapper;
+using User.Application.Commands;
 
-namespace Auth.Application.Mappers
+namespace User.Application.Mappers
 {
     public class UserMappingProfile : Profile
     {
         public UserMappingProfile()
         {
-            CreateMap<User, UserResponse>().ReverseMap();
-            CreateMap<CreateUserCommand, RegisterDTO>().ReverseMap();
-            CreateMap<LoginUserCommand, LoginDTO>().ReverseMap();
+            CreateMap<Domain.Entities.User, UserResponse>().ReverseMap();
+            CreateMap<CreateUserCommand, RegisterDto>().ReverseMap();
+            CreateMap<LoginUserCommand, LoginDto>().ReverseMap();
         }
     }
 }

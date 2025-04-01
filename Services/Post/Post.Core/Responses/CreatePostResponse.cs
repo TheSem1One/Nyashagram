@@ -2,6 +2,6 @@
 {
     public class CreatePostResponse
     {
-        public string PostId { get; set; }
+        public string PostId { get; set; } = null!;
     }
 }

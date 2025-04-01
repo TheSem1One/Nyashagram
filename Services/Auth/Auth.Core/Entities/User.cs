@@ -1,4 +1,4 @@
-﻿namespace Auth.Domain.Entities
+﻿namespace User.Domain.Entities
 {
     public class User
     {

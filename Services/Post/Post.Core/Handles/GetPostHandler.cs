@@ -3,20 +3,17 @@ using MediatR;
 using Post.Application.Mappers;
 using Post.Application.Queries;
 using Post.Application.Responses;
-using Post.Domain.Reposetories;
+using Post.Domain.Repositories;
 
 namespace Post.Application.Handles
 {
-    public class GetPostHandler : IRequestHandler<GetPostQuery, IList<GetPostResponse>>
+    public class GetPostHandler(IPostRepository postRepository, IMapper mapper) : IRequestHandler<GetPostQuery, IList<GetPostResponse>>
     {
-        private readonly IPostRepository _postReposetory;
-        public GetPostHandler(IPostRepository postReposetory, IMapper mapper)
-        {
-            _postReposetory = postReposetory;
-        }
+        private readonly IPostRepository _postRepository = postRepository;
+
         public async Task<IList<GetPostResponse>> Handle(GetPostQuery request, CancellationToken cancellationToken)
         {
-            var postList = await _postReposetory.GetPost();
+            var postList = await _postRepository.GetPost();
             var postResponseList = PostMapper.Mapper.Map<IList<Domain.Entities.Post>, IList<GetPostResponse>>(postList.ToList());
             return postResponseList;
         }
