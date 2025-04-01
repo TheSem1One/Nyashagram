@@ -8,6 +8,6 @@ namespace FileManager.Application.Commands
     {
         public IFormFile FileUrl { get; set; } = null!;
 
-     
+
     }
 }

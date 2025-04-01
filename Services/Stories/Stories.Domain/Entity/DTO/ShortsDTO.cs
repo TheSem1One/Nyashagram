@@ -2,8 +2,8 @@
 {
     public class ShortsDTO
     {
-        public string StoriesImageUrl { get; set; }
-        public string CreatorNickName { get; set; }
+        public string StoryImageUrl { get; set; } = null!;
+        public string CreatorNickName { get; set; } = null!;
 
     }
 }

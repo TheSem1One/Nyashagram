@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Post.Core\Post.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
-
 </Project>

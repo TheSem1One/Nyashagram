@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileManager.Application.Mappers
 {
     public class FileManagerMapper
     {
-        private static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(() =>
+        private static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(static () =>
         {
             var config = new MapperConfiguration(cfg =>
             {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Auth.Application.Mappers
+namespace User.Application.Mappers
 {
     public static class UserMapper
     {

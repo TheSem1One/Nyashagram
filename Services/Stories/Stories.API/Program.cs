@@ -2,8 +2,8 @@ using Microsoft.OpenApi.Models;
 using Stories.Application.Commands;
 using Stories.Domain.Repositories;
 using Stories.Infrastructure.Data;
-using Stories.Infrastructure.Presistence;
-using Stories.Infrastructure.Repositories;
+using Stories.Infrastructure.Persistence;
+using Stories.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +20,8 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddTransient<IStoriesContext, StoriesContext>();
-builder.Services.AddScoped<IStoriesRepository, StoriesRepositories>();
-builder.Services.AddTransient<IStoriesRepository, StoriesRepositories>();
+builder.Services.AddScoped<IStoriesRepository, StoriesService>();
+builder.Services.AddTransient<IStoriesRepository, StoriesService>();
 
 builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
 {

@@ -10,13 +10,13 @@ namespace Post.Domain.Entities
         public string? PostId { get; set; }
 
         [BsonElement("PostImageUrl"), BsonRepresentation(BsonType.String)]
-        public string PostImageUrl { get; set; }
+        public string ImageUrl { get; set; } = null!;
 
         [BsonElement("CreatorNickName"), BsonRepresentation(BsonType.String)]
-        public string CreatorNickName { get; set; }
+        public string CreatorNickName { get; set; } = null!;
 
         [BsonElement("Descriptions"), BsonRepresentation(BsonType.String)]
-        public string Descriptions { get; set; }
+        public string Descriptions { get; set; } = null!;
 
         [BsonElement("CreateDateTime"), BsonRepresentation(BsonType.DateTime)]
         public DateTime CreateDateTime { get; set; }

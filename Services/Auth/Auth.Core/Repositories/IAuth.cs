@@ -1,13 +1,11 @@
-﻿using Auth.Domain.DTO;
-using Auth.Domain.Entities;
+﻿using User.Domain.DTO;
 
-namespace Auth.Domain.Repositories
+namespace User.Domain.Repositories
 {
     public interface IAuth
     {
-        Task<string> CreateUser(RegisterDTO registerDto);
-        Task<string> LoginUser(LoginDTO loginDto);
-        Task<User> GetUserByName(string name);
-        Task<bool> UserExist(string email);
+        Task<string> CreateUser(RegisterDto registerDto);
+        Task<string> LoginUser(LoginDto loginDto);
+        Task<Entities.User> GetUserByName(string name);
     }
 }

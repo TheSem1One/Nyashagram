@@ -1,4 +1,4 @@
-﻿namespace Auth.Application.Responses
+﻿namespace User.Application.Responses
 {
     public class AuthResponse
     {

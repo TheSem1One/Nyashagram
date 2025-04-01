@@ -1,14 +1,10 @@
-﻿using Auth.Application.Responses;
+﻿using User.Application.Responses;
 using MediatR;
 
-namespace Auth.Application.Queries
+namespace User.Application.Queries
 {
-    public class GetUserQuery : IRequest<UserResponse>
+    public class GetUserQuery(string nickName) : IRequest<UserResponse>
     {
-        public string NickName { get; set; }
-        public GetUserQuery(string nickName)
-        {
-            NickName = nickName;
-        }
+        public string NickName { get; set; } = nickName;
     }
 }
