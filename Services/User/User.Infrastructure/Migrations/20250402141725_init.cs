@@ -23,7 +23,7 @@ namespace User.Infrastructure.Migrations
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     ImageUrl = table.Column<string>(type: "text", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    BirthDate = table.Column<DateOnly>(type: "date", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Subscriptions = table.Column<List<string>>(type: "text[]", nullable: true),
                     Subscribers = table.Column<List<string>>(type: "text[]", nullable: true),
