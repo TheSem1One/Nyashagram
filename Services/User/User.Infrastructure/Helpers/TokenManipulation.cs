@@ -11,7 +11,7 @@ namespace User.Infrastructure.Helpers
         private readonly ClaimCreator _claim = claim;
         public string CreateToken(string email, string password)
         {
-            UserDTO user = _userIdentity.GetJwtUser(email);
+            UserDto user = _userIdentity.GetJwtUser(email);
             var strSecretKey = "qwertyuiop[]';lkhhgfdfddsasxcvbnmm,";
             var expiresAt = DateTime.UtcNow.AddYears(20);
 

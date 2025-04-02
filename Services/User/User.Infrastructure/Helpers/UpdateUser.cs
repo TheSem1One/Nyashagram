@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using User.Domain.DTO;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace User.Infrastructure.Helpers
 {

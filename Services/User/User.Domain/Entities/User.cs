@@ -3,10 +3,10 @@
     public class User
     {
         public int UserId { get; set; }
-        public string NickName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string ImageUrl { get; set; }
+        public string NickName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
         public DateOnly? BirthDate { get; set; }
         public string? Description { get; set; }
         public List<string>? Subscriptions { get; set; }

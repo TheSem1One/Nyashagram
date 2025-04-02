@@ -4,7 +4,7 @@ namespace User.Infrastructure.Helpers
 {
     public class ClaimCreator
     {
-        public List<System.Security.Claims.Claim> GetClaims(UserDTO userDto)
+        public List<System.Security.Claims.Claim> GetClaims(UserDto userDto)
         {
             var claims = new List<System.Security.Claims.Claim>
             {

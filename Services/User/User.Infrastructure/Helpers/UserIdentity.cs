@@ -8,10 +8,10 @@ namespace User.Infrastructure.Helpers
         private readonly UserContext _db = db;
         private readonly HashPassword _hashPassword = hashPassword;
 
-        public UserDTO GetJwtUser(string email)
+        public UserDto GetJwtUser(string email)
         {
             var user = _db.Users.SingleOrDefault(user => user.Email.ToLower() == email.ToLower());
-            var userDto = new UserDTO
+            var userDto = new UserDto
             {
                 NickName = user.NickName,
                 BirthDate = user.BirthDate,

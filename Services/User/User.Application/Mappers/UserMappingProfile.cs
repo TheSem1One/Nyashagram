@@ -15,6 +15,7 @@ namespace User.Application.Mappers
             CreateMap<CreateUserCommand, RegisterDto>().ReverseMap();
             CreateMap<LoginUserCommand, LoginDto>().ReverseMap();
             CreateMap<UpdateProfileCommand, ProfileDto>().ReverseMap();
+            CreateMap<Domain.Entities.User, UserDto>().ReverseMap();
         }
     }
 }

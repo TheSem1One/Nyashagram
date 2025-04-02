@@ -10,7 +10,7 @@ namespace User.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpGet("{nickName}")]
+        [HttpGet("{NickName}")]
         public async Task<ActionResult<UserResponse>> GetUser([FromRoute] GetUserQuery query)
         {
             var result = await _mediator.Send((query));

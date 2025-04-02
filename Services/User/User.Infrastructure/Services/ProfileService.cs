@@ -11,6 +11,14 @@ namespace User.Infrastructure.Services
         private readonly UserContext _db = db;
         private readonly UpdateUser _updateUser = updateUser;
 
+        public async Task<Domain.Entities.User> GetProfile(string nickName)
+        {
+            var user = await _db.Users
+                .SingleOrDefaultAsync(p => p.NickName.ToLower() == nickName.ToLower());
+            return user;
+
+        }
+
         public async Task<bool> UpdateProfile(ProfileDto profileDto)
         {
             var user = await _db.Users.SingleOrDefaultAsync(p=>p.NickName.ToLower()==profileDto.NickName.ToLower());
