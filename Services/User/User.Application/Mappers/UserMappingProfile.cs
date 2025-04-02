@@ -2,7 +2,6 @@
 using User.Application.Responses;
 using User.Domain.DTO;
 using AutoMapper;
-using User.Application.Commands;
 
 namespace User.Application.Mappers
 {

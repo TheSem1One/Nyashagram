@@ -1,13 +1,18 @@
-﻿using User.Application.Mappers;
+﻿using MediatR;
+using User.Application.Mappers;
 using User.Application.Responses;
 using User.Domain.DTO;
 using User.Domain.Repositories;
-using MediatR;
-using User.Application.Commands;
 
-namespace User.Application.Handlers
+namespace User.Application.Features.Orders
 {
-    class LoginUserCommandHandler(IAuth user) : IRequestHandler<LoginUserCommand, AuthResponse>
+    public class LoginUserCommand : IRequest<AuthResponse>
+    {
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
+
+    }
+    public class LoginUserCommandHandler(IAuth user) : IRequestHandler<LoginUserCommand, AuthResponse>
     {
         private readonly IAuth _user = user;
 
@@ -22,4 +27,5 @@ namespace User.Application.Handlers
             return new AuthResponse { Token = authToken };
         }
     }
+
 }

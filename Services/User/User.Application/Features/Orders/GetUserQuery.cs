@@ -1,11 +1,14 @@
-﻿using User.Application.Mappers;
-using User.Application.Queries;
+﻿using MediatR;
+using User.Application.Mappers;
 using User.Application.Responses;
 using User.Domain.Repositories;
-using MediatR;
 
-namespace User.Application.Handlers
+namespace User.Application.Features.Orders
 {
+    public class GetUserQuery : IRequest<UserResponse>
+    {
+        public string NickName { get; set; } = null!;
+    }
     public class GetUserNickNameQueryHandler(IAuth user) : IRequestHandler<GetUserQuery, UserResponse>
     {
         private readonly IAuth _user = user;

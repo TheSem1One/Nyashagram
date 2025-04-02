@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{8C47F7EB-134B-4EAF-8E9B-DD201176FFC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.API", "Services\Auth\Auth.API\User.API.csproj", "{88A4DDFF-D69D-44E8-B39A-1E522BC3F73B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.API", "Services\User\User.API\User.API.csproj", "{88A4DDFF-D69D-44E8-B39A-1E522BC3F73B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Application", "Services\Auth\Auth.Application\User.Application.csproj", "{D45E5EC4-6324-4263-9A8C-7E9D4064ECB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Application", "Services\User\User.Application\User.Application.csproj", "{D45E5EC4-6324-4263-9A8C-7E9D4064ECB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Domain", "Services\Auth\Auth.Core\User.Domain.csproj", "{60B72D45-A46D-4720-9227-D36713567EB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Domain", "Services\User\User.Domain\User.Domain.csproj", "{60B72D45-A46D-4720-9227-D36713567EB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Infrastructure", "Services\Auth\User.Infrastructure\User.Infrastructure.csproj", "{9E0CB6AE-16F1-4893-B7B8-D405B64E918A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Infrastructure", "Services\User\User.Infrastructure\User.Infrastructure.csproj", "{9E0CB6AE-16F1-4893-B7B8-D405B64E918A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Post", "Post", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
