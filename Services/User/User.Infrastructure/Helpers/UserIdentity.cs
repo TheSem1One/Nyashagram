@@ -10,17 +10,17 @@ namespace User.Infrastructure.Helpers
 
         public UserDTO GetJwtUser(string email)
         {
-            var user = _db.Users.SingleOrDefault(user => user.email.ToLower() == email.ToLower());
+            var user = _db.Users.SingleOrDefault(user => user.Email.ToLower() == email.ToLower());
             var userDto = new UserDTO
             {
-                NickName = user.nickName,
-                BirthDate = user.birthDate,
-                Posts = user.posts,
-                SavedPosts = user.savedPosts,
-                StoriesList = user.storiesList,
-                Subcriptions = user.subcriptions,
-                Subscribers = user.subscribers,
-                PrivateProfile = user.privateProfile
+                NickName = user.NickName,
+                BirthDate = user.BirthDate,
+                Posts = user.Posts,
+                SavedPosts = user.SavedPosts,
+                StoriesList = user.StoriesList,
+                Subcriptions = user.Subscriptions,
+                Subscribers = user.Subscribers,
+                PrivateProfile = user.PrivateProfile
             };
             return userDto;
 
@@ -29,8 +29,8 @@ namespace User.Infrastructure.Helpers
         public bool IsEqual(string email, string password)
         {
             var hashPassword = _hashPassword.HashingPassword(password);
-            var user = _db.Users.SingleOrDefault(user => user.email.ToLower() == email.ToLower());
-            return user.email.ToLower() == email.ToLower() && user.password == hashPassword;
+            var user = _db.Users.SingleOrDefault(user => user.Email.ToLower() == email.ToLower());
+            return user.Email.ToLower() == email.ToLower() && user.Password == hashPassword;
 
         }
     }

@@ -18,55 +18,59 @@ namespace User.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.2")
+                .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Auth.Domain.Entities.User", b =>
+            modelBuilder.Entity("User.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("userId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("userId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
 
-                    b.Property<DateTime?>("birthDate")
+                    b.Property<DateTime?>("BirthDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("nickName")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("password")
+                    b.Property<string>("NickName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.PrimitiveCollection<List<string>>("posts")
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.PrimitiveCollection<List<string>>("Posts")
                         .HasColumnType("text[]");
 
-                    b.Property<bool>("privateProfile")
+                    b.Property<bool>("PrivateProfile")
                         .HasColumnType("boolean");
 
-                    b.PrimitiveCollection<List<string>>("savedPosts")
+                    b.PrimitiveCollection<List<string>>("SavedPosts")
                         .HasColumnType("text[]");
 
-                    b.PrimitiveCollection<List<string>>("storiesList")
+                    b.PrimitiveCollection<List<string>>("StoriesList")
                         .HasColumnType("text[]");
 
-                    b.PrimitiveCollection<List<string>>("subcriptions")
+                    b.PrimitiveCollection<List<string>>("Subscribers")
                         .HasColumnType("text[]");
 
-                    b.PrimitiveCollection<List<string>>("subscribers")
+                    b.PrimitiveCollection<List<string>>("Subscriptions")
                         .HasColumnType("text[]");
 
-                    b.HasKey("userId");
+                    b.HasKey("UserId");
 
-                    b.HasIndex("email")
+                    b.HasIndex("Email")
                         .IsUnique();
 
                     b.ToTable("Users");

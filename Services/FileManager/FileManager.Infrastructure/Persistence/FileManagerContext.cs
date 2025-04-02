@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
-using FileManager.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using File = FileManager.Domain.Entities.File;
 
 namespace FileManager.Infrastructure.Persistence
 {
-    public class ImageContext(DbContextOptions options) : DbContext(options)
+    public class FileManagerContext(DbContextOptions options) : DbContext(options)
     {
-        public DbSet<Image> Images { get; set; }
+        public DbSet<File> Files { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,13 +1,12 @@
 ﻿using User.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using User.Domain.DTO;
-using User.Application.Features.Orders;
-using LoginUserCommand = User.Application.Features.Orders.LoginUserCommand;
+using User.Application.Features.Auth;
+using LoginUserCommand = User.Application.Features.Auth.LoginUserCommand;
 
 namespace User.API.Controllers
 {
-    public class UsersController(IMediator mediator) : ApiController
+    public class AuthController(IMediator mediator) : ApiController
     {
         private readonly IMediator _mediator = mediator;
 

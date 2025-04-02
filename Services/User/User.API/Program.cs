@@ -1,15 +1,15 @@
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using User.Application.Queries;
 using User.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using User.API.Transformers;
 using User.Infrastructure.Persistence;
 using User.Infrastructure.Helpers;
-using User.Infrastructure.Repositories;
 using System.Text.Json.Serialization;
+using User.Application.Features.Auth;
+using User.Infrastructure.Services;
 
 namespace User.API
 {
@@ -28,7 +28,7 @@ namespace User.API
             //RegisterMediator 
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetUserQuery).Assembly));
             //Register App Services
-            builder.Services.AddScoped<IAuth, AuthRepository>();
+            builder.Services.AddScoped<IAuth, AuthService>();
             builder.Services.AddScoped<TokenManipulation>();
             builder.Services.AddScoped<HashPassword>();
             builder.Services.AddScoped<UserIdentity>();

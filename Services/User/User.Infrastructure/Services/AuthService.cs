@@ -1,13 +1,12 @@
 ﻿using User.Domain.DTO;
-using User.Domain.Entities;
 using User.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using User.Infrastructure.Helpers;
 using User.Infrastructure.Persistence;
 
-namespace User.Infrastructure.Repositories
+namespace User.Infrastructure.Services
 {
-    public class AuthRepository(UserContext db, TokenManipulation tokenManipulation,
+    public class AuthService(UserContext db, TokenManipulation tokenManipulation,
         HashPassword hashPassword, UserIdentity userIdentity) : IAuth
     {
         private readonly UserContext _db = db;
@@ -23,15 +22,15 @@ namespace User.Infrastructure.Repositories
             }
             registerDto.Password = _hashPassword.HashingPassword(registerDto.Password);
 
-            var user = new User.Domain.Entities.User
+            var user = new Domain.Entities.User
             {
-                email = registerDto.Email,
-                password = registerDto.Password,
-                nickName = registerDto.NickName
+                Email = registerDto.Email,
+                Password = registerDto.Password,
+                NickName = registerDto.NickName,
             };
             var newUser = await _db.Users.AddAsync(user);
             await _db.SaveChangesAsync();
-            var jwtToken = _tokenManipulation.CreateToken(user.email, user.password);
+            var jwtToken = _tokenManipulation.CreateToken(user.Email, user.Password);
             return jwtToken;
 
         }
@@ -51,18 +50,18 @@ namespace User.Infrastructure.Repositories
             return "Wrong Email or Password";
         }
 
-        public async Task<User.Domain.Entities.User> GetUserByName(string nickName)
+        public async Task<Domain.Entities.User> GetUserByName(string nickName)
         {
 
             return await _db.Users
-                .FirstOrDefaultAsync(p => p.nickName == nickName);
+                .FirstOrDefaultAsync(p => p.NickName == nickName);
         }
 
 
 
         public async Task<bool> UserExist(string email)
         {
-            if (await _db.Users.AnyAsync(user => user.email.ToLower().Equals(email.ToLower())))
+            if (await _db.Users.AnyAsync(user => user.Email.ToLower().Equals(email.ToLower())))
             {
                 return true;
             }

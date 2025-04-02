@@ -2,17 +2,18 @@
 {
     public class User
     {
-        public int userId { get; set; }
-        public string nickName { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public DateTime? birthDate { get; set; }
-        public List<string>? subcriptions { get; set; }
-        public List<string>? subscribers { get; set; }
-        public List<string>? posts { get; set; }
-        public List<string>? storiesList { get; set; }
-        public List<string>? savedPosts { get; set; }
-        public bool privateProfile { get; set; }
+        public int UserId { get; set; }
+        public string NickName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string ImageUrl { get; set;}
+        public DateTime? BirthDate { get; set; }
+        public List<string>? Subscriptions { get; set; }
+        public List<string>? Subscribers { get; set; }
+        public List<string>? Posts { get; set; }
+        public List<string>? StoriesList { get; set; }
+        public List<string>? SavedPosts { get; set; }
+        public bool PrivateProfile { get; set; }
 
 
 

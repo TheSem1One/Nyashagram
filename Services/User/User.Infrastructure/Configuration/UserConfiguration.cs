@@ -1,16 +1,15 @@
-﻿using User.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace User.Infrastructure.Configuration
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User.Domain.Entities.User>
+    public class UserConfiguration : IEntityTypeConfiguration<Domain.Entities.User>
     {
-        public void Configure(EntityTypeBuilder<User.Domain.Entities.User> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.User> builder)
         {
-            builder.HasKey(user => user.userId);
+            builder.HasKey(user => user.UserId);
             builder
-                .HasIndex(user => user.email)
+                .HasIndex(user => user.Email)
                 .IsUnique();
         }
     }

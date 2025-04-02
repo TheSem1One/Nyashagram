@@ -1,7 +1,8 @@
-﻿using User.Application.Commands;
+﻿
 using User.Application.Responses;
 using User.Domain.DTO;
 using AutoMapper;
+using User.Application.Features.Auth;
 
 namespace User.Application.Mappers
 {

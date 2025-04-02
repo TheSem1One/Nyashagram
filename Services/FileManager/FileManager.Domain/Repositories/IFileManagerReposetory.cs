@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace FileManager.Domain.Reposetories
+namespace FileManager.Domain.Repositories
 {
-    public interface IFileManagerReposetory
+    public interface IFileManagerRepository
     {
         Task<string> SaveFileAsync(IFormFile file);
     }

@@ -4,7 +4,7 @@ using User.Application.Responses;
 using User.Domain.DTO;
 using User.Domain.Repositories;
 
-namespace User.Application.Features.Orders
+namespace User.Application.Features.Auth
 {
     public class CreateUserCommand : IRequest<AuthResponse>
     {
@@ -15,19 +15,19 @@ namespace User.Application.Features.Orders
 
     }
 
-    public class CreateUserCommandHandler(IAuth user) : IRequestHandler<CreateUserCommand, AuthResponse>
+    public class CreateUserCommandHandler(IAuth auth) : IRequestHandler<CreateUserCommand, AuthResponse>
     {
-        private readonly IAuth _user = user;
+        private readonly IAuth _auth = auth;
 
         public async Task<AuthResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var userEntity = UserMapper.Mapper.Map<RegisterDto>(request);
-            if (userEntity is null)
+            var user = UserMapper.Mapper.Map<RegisterDto>(request);
+            if (user is null)
             {
                 throw new ApplicationException("There is an issue with mapping while creating new User");
             }
-            var authToken = await _user.CreateUser(userEntity);
-            return new AuthResponse { Token = authToken };
+            var token = await _auth.CreateUser(user);
+            return new AuthResponse { Token = token };
         }
     }
 

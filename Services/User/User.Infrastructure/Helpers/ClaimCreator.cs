@@ -4,31 +4,31 @@ namespace User.Infrastructure.Helpers
 {
     public class ClaimCreator
     {
-        public List<System.Security.Claims.Claim> GetClaims(UserDTO user)
+        public List<System.Security.Claims.Claim> GetClaims(UserDTO userDto)
         {
             var claims = new List<System.Security.Claims.Claim>
             {
-                new System.Security.Claims.Claim("NickName", user.NickName ?? string.Empty),
-                new System.Security.Claims.Claim("PrivateProfile", user.PrivateProfile.ToString())
+                new System.Security.Claims.Claim("NickName", userDto.NickName ?? string.Empty),
+                new System.Security.Claims.Claim("PrivateProfile", userDto.PrivateProfile.ToString())
             };
 
-            if (user.BirthDate.HasValue)
-                claims.Add(new System.Security.Claims.Claim("BirthDate", user.BirthDate.Value.ToString("yyyy-MM-dd")));
+            if (userDto.BirthDate.HasValue)
+                claims.Add(new System.Security.Claims.Claim("BirthDate", userDto.BirthDate.Value.ToString("yyyy-MM-dd")));
 
-            if (user.Subcriptions?.Any() == true)
-                claims.Add(new System.Security.Claims.Claim("Subcriptions", string.Join(",", user.Subcriptions)));
+            if (userDto.Subcriptions?.Any() == true)
+                claims.Add(new System.Security.Claims.Claim("Subcriptions", string.Join(",", userDto.Subcriptions)));
 
-            if (user.Subscribers?.Any() == true)
-                claims.Add(new System.Security.Claims.Claim("Subscribers", string.Join(",", user.Subscribers)));
+            if (userDto.Subscribers?.Any() == true)
+                claims.Add(new System.Security.Claims.Claim("Subscribers", string.Join(",", userDto.Subscribers)));
 
-            if (user.Posts?.Any() == true)
-                claims.Add(new System.Security.Claims.Claim("Posts", string.Join(",", user.Posts)));
+            if (userDto.Posts?.Any() == true)
+                claims.Add(new System.Security.Claims.Claim("Posts", string.Join(",", userDto.Posts)));
 
-            if (user.StoriesList?.Any() == true)
-                claims.Add(new System.Security.Claims.Claim("StoriesList", string.Join(",", user.StoriesList)));
+            if (userDto.StoriesList?.Any() == true)
+                claims.Add(new System.Security.Claims.Claim("StoriesList", string.Join(",", userDto.StoriesList)));
 
-            if (user.SavedPosts?.Any() == true)
-                claims.Add(new System.Security.Claims.Claim("SavedPosts", string.Join(",", user.SavedPosts)));
+            if (userDto.SavedPosts?.Any() == true)
+                claims.Add(new System.Security.Claims.Claim("SavedPosts", string.Join(",", userDto.SavedPosts)));
 
             return claims;
         }

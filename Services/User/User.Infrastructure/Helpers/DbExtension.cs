@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using User.Infrastructure.Persistence;
 
@@ -13,7 +12,7 @@ namespace User.Infrastructure.Helpers
             using UserContext dbContext =
                 scope.ServiceProvider.GetRequiredService<UserContext>();
 
-           // dbContext.Database.Migrate();
+            // dbContext.Database.Migrate();
         }
     }
 }
