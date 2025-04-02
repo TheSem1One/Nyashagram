@@ -1,17 +1,23 @@
-﻿using System.Linq.Expressions;
-using User.Domain.DTO;
+﻿using User.Domain.DTO;
 using User.Domain.Repositories;
+using User.Infrastructure.Helpers;
 using User.Infrastructure.Persistence;
 
 namespace User.Infrastructure.Services
 {
-    public class ProfileService(UserContext db) : IProfile
+    public class ProfileService(UserContext db, UpdateUser updateUser) : IProfile
     {
         private readonly UserContext _db = db;
+        private readonly UpdateUser _updateUser = updateUser;
 
-        public Task<Domain.Entities.User> UpdateProfile(UserDTO userDto)
+        public async Task<Domain.Entities.User> UpdateProfile(ProfileDto profileDto)
         {
-            throw new NotImplementedException();
+            var user = await _db.Users.FindAsync(profileDto.NickName);
+            var updatedUser = _updateUser.Update(user, profileDto);
+            _db.Users.Update(updatedUser);
+            await _db.SaveChangesAsync();
+            return updatedUser;
+
         }
     }
 }

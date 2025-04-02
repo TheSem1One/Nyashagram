@@ -3,6 +3,7 @@ using User.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using User.Infrastructure.Helpers;
 using User.Infrastructure.Persistence;
+using static System.Net.WebRequestMethods;
 
 namespace User.Infrastructure.Services
 {
@@ -27,6 +28,7 @@ namespace User.Infrastructure.Services
                 Email = registerDto.Email,
                 Password = registerDto.Password,
                 NickName = registerDto.NickName,
+                ImageUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
             };
             var newUser = await _db.Users.AddAsync(user);
             await _db.SaveChangesAsync();

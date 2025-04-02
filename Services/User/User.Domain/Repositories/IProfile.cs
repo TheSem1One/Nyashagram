@@ -4,7 +4,7 @@ namespace User.Domain.Repositories
 {
     public interface IProfile
     {
-        Task<Entities.User> UpdateProfile(UserDTO userDto);
+        Task<Entities.User> UpdateProfile(ProfileDto profileDto);
 
     }
 }

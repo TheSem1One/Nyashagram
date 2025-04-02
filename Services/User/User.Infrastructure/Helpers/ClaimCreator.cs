@@ -9,14 +9,13 @@ namespace User.Infrastructure.Helpers
             var claims = new List<System.Security.Claims.Claim>
             {
                 new System.Security.Claims.Claim("NickName", userDto.NickName ?? string.Empty),
-                new System.Security.Claims.Claim("PrivateProfile", userDto.PrivateProfile.ToString())
             };
 
             if (userDto.BirthDate.HasValue)
                 claims.Add(new System.Security.Claims.Claim("BirthDate", userDto.BirthDate.Value.ToString("yyyy-MM-dd")));
 
-            if (userDto.Subcriptions?.Any() == true)
-                claims.Add(new System.Security.Claims.Claim("Subcriptions", string.Join(",", userDto.Subcriptions)));
+            if (userDto.Subscriptions?.Any() == true)
+                claims.Add(new System.Security.Claims.Claim("Subcriptions", string.Join(",", userDto.Subscriptions)));
 
             if (userDto.Subscribers?.Any() == true)
                 claims.Add(new System.Security.Claims.Claim("Subscribers", string.Join(",", userDto.Subscribers)));

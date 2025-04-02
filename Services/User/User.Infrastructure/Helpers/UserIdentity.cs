@@ -18,9 +18,9 @@ namespace User.Infrastructure.Helpers
                 Posts = user.Posts,
                 SavedPosts = user.SavedPosts,
                 StoriesList = user.StoriesList,
-                Subcriptions = user.Subscriptions,
+                Subscriptions = user.Subscriptions,
                 Subscribers = user.Subscribers,
-                PrivateProfile = user.PrivateProfile
+                 
             };
             return userDto;
 

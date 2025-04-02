@@ -13,7 +13,7 @@ using User.Infrastructure.Persistence;
 namespace User.Infrastructure.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20250402092945_init")]
+    [Migration("20250402104146_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -37,6 +37,9 @@ namespace User.Infrastructure.Migrations
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -55,9 +58,6 @@ namespace User.Infrastructure.Migrations
 
                     b.PrimitiveCollection<List<string>>("Posts")
                         .HasColumnType("text[]");
-
-                    b.Property<bool>("PrivateProfile")
-                        .HasColumnType("boolean");
 
                     b.PrimitiveCollection<List<string>>("SavedPosts")
                         .HasColumnType("text[]");

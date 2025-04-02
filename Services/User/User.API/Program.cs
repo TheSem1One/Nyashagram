@@ -33,6 +33,7 @@ namespace User.API
             builder.Services.AddScoped<HashPassword>();
             builder.Services.AddScoped<UserIdentity>();
             builder.Services.AddScoped<ClaimCreator>();
+            builder.Services.AddScoped<UpdateUser>();
             builder.Services
                 .AddControllers(options =>
                 {

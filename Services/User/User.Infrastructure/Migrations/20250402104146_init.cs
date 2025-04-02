@@ -24,12 +24,12 @@ namespace User.Infrastructure.Migrations
                     Password = table.Column<string>(type: "text", nullable: false),
                     ImageUrl = table.Column<string>(type: "text", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     Subscriptions = table.Column<List<string>>(type: "text[]", nullable: true),
                     Subscribers = table.Column<List<string>>(type: "text[]", nullable: true),
                     Posts = table.Column<List<string>>(type: "text[]", nullable: true),
                     StoriesList = table.Column<List<string>>(type: "text[]", nullable: true),
-                    SavedPosts = table.Column<List<string>>(type: "text[]", nullable: true),
-                    PrivateProfile = table.Column<bool>(type: "boolean", nullable: false)
+                    SavedPosts = table.Column<List<string>>(type: "text[]", nullable: true)
                 },
                 constraints: table =>
                 {
