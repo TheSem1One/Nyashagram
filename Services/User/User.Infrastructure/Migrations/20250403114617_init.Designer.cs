@@ -13,7 +13,7 @@ using User.Infrastructure.Persistence;
 namespace User.Infrastructure.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20250402141725_init")]
+    [Migration("20250403114617_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -57,18 +57,23 @@ namespace User.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.PrimitiveCollection<List<string>>("Posts")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("SavedPosts")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("StoriesList")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("Subscribers")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("Subscriptions")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.HasKey("UserId");

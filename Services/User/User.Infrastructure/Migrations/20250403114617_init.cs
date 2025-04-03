@@ -25,11 +25,11 @@ namespace User.Infrastructure.Migrations
                     ImageUrl = table.Column<string>(type: "text", nullable: false),
                     BirthDate = table.Column<DateOnly>(type: "date", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    Subscriptions = table.Column<List<string>>(type: "text[]", nullable: true),
-                    Subscribers = table.Column<List<string>>(type: "text[]", nullable: true),
-                    Posts = table.Column<List<string>>(type: "text[]", nullable: true),
-                    StoriesList = table.Column<List<string>>(type: "text[]", nullable: true),
-                    SavedPosts = table.Column<List<string>>(type: "text[]", nullable: true)
+                    Subscriptions = table.Column<List<string>>(type: "text[]", nullable: false),
+                    Subscribers = table.Column<List<string>>(type: "text[]", nullable: false),
+                    Posts = table.Column<List<string>>(type: "text[]", nullable: false),
+                    StoriesList = table.Column<List<string>>(type: "text[]", nullable: false),
+                    SavedPosts = table.Column<List<string>>(type: "text[]", nullable: false)
                 },
                 constraints: table =>
                 {

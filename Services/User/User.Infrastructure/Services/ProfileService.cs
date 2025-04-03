@@ -19,14 +19,33 @@ namespace User.Infrastructure.Services
 
         }
 
+        public async Task<bool> Subscribe(string currentNickName, string targetNickName)
+        {
+            if (currentNickName == targetNickName) return false;
+            var currentUser = await _db.Users
+                .SingleOrDefaultAsync(p => p.NickName.ToLower() == currentNickName.ToLower());
+            var targetUser =
+                await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == targetNickName.ToLower());
+            currentUser.Subscriptions.Add(targetNickName);
+            targetUser.Subscribers.Add(currentNickName);
+            _db.Users.Update(currentUser);
+            _db.Users.Update(targetUser);
+            await _db.SaveChangesAsync();
+            return true;
+        }
+
+        public Task<bool> Unscribe(string currentUser, string targetNickName)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> UpdateProfile(ProfileDto profileDto)
         {
-            var user = await _db.Users.SingleOrDefaultAsync(p=>p.NickName.ToLower()==profileDto.NickName.ToLower());
+            var user = await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == profileDto.NickName.ToLower());
             var updatedUser = _updateUser.Update(user, profileDto);
             _db.Users.Update(updatedUser);
             await _db.SaveChangesAsync();
             return true;
-
         }
     }
 }

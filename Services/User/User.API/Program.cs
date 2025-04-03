@@ -29,7 +29,7 @@ namespace User.API
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetUserQuery).Assembly));
             //Register App Services
             builder.Services.AddScoped<IAuth, AuthService>();
-            builder.Services.AddScoped<IProfile, ProfileService>(); 
+            builder.Services.AddScoped<IProfile, ProfileService>();
             builder.Services.AddScoped<TokenManipulation>();
             builder.Services.AddScoped<HashPassword>();
             builder.Services.AddScoped<UserIdentity>();

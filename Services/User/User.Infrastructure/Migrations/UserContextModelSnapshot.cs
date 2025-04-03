@@ -54,18 +54,23 @@ namespace User.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.PrimitiveCollection<List<string>>("Posts")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("SavedPosts")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("StoriesList")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("Subscribers")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.PrimitiveCollection<List<string>>("Subscriptions")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.HasKey("UserId");
