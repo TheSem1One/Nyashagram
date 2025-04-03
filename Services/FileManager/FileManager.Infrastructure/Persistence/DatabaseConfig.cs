@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 
 
-namespace FileManager.Infrastructure.Persistance
+namespace FileManager.Infrastructure.Persistence
 {
     public class DatabaseConfig(IConfiguration configuration) : DbContext
     {
@@ -12,7 +12,6 @@ namespace FileManager.Infrastructure.Persistance
         {
             options.UseNpgsql(_configuration.GetConnectionString("ApiDatabase"));
         }
-
 
     }
 }
