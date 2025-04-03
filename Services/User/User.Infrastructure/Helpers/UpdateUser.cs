@@ -1,16 +1,17 @@
 ﻿using System.Globalization;
 using User.Domain.DTO;
+using User.Domain.DTO.Profile;
 
 namespace User.Infrastructure.Helpers
 {
     public class UpdateUser
     {
-        public Domain.Entities.User Update(Domain.Entities.User user, ProfileDto profileDto)
+        public Domain.Entities.User Update(Domain.Entities.User user, UpdateProfileDto updateProfileDto)
         {
-            if (!string.IsNullOrEmpty(profileDto.ImageUrl)) user.ImageUrl = profileDto.ImageUrl;
-            if (!string.IsNullOrEmpty(profileDto.BirthDate))
+            if (!string.IsNullOrEmpty(updateProfileDto.ImageUrl)) user.ImageUrl = updateProfileDto.ImageUrl;
+            if (!string.IsNullOrEmpty(updateProfileDto.BirthDate))
             {
-                var dateString = profileDto.BirthDate;
+                var dateString = updateProfileDto.BirthDate;
                 DateOnly result;
                 bool isValidDate = DateOnly.TryParseExact(dateString, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out result);
                 if (isValidDate)
@@ -20,7 +21,7 @@ namespace User.Infrastructure.Helpers
                     user.BirthDate = date;
                 }
             }
-            if (!string.IsNullOrEmpty(profileDto.Description)) user.Description = profileDto.Description;
+            if (!string.IsNullOrEmpty(updateProfileDto.Description)) user.Description = updateProfileDto.Description;
             return user;
         }
     }

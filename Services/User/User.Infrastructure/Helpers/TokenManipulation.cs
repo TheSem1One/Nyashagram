@@ -2,6 +2,7 @@
 using System.Text;
 using User.Domain.DTO;
 using Microsoft.IdentityModel.Tokens;
+using User.Domain.DTO.Profile;
 
 namespace User.Infrastructure.Helpers
 {
@@ -11,12 +12,12 @@ namespace User.Infrastructure.Helpers
         private readonly ClaimCreator _claim = claim;
         public string CreateToken(string email, string password)
         {
-            UserDto user = _userIdentity.GetJwtUser(email);
+            ProfileDto profile = _userIdentity.GetJwtUser(email);
             var strSecretKey = "qwertyuiop[]';lkhhgfdfddsasxcvbnmm,";
             var expiresAt = DateTime.UtcNow.AddYears(20);
 
 
-            var claims = _claim.GetClaims(user);
+            var claims = _claim.GetClaims(profile);
             var secretKey = Encoding.ASCII.GetBytes(strSecretKey);
             var jwt = new JwtSecurityToken(
                 signingCredentials: new SigningCredentials(

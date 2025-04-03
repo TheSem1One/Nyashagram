@@ -1,4 +1,4 @@
-﻿namespace User.Domain.DTO
+﻿namespace User.Domain.DTO.Users
 {
     public class SubscribeDto
     {

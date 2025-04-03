@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using User.Infrastructure.Helpers;
 using User.Infrastructure.Persistence;
 using static System.Net.WebRequestMethods;
+using System.Net;
+using System.Web.Http;
+using User.Domain.DTO.Auth;
 
 namespace User.Infrastructure.Services
 {
@@ -19,7 +22,12 @@ namespace User.Infrastructure.Services
         {
             if (await UserExist(registerDto.Email))
             {
-                return "User already exist";
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format($"Email Exist", 409)),
+                    ReasonPhrase = "User Email Already Exist"
+                };
+                throw new HttpResponseException(resp);
             }
             registerDto.Password = _hashPassword.HashingPassword(registerDto.Password);
 
@@ -51,15 +59,6 @@ namespace User.Infrastructure.Services
 
             return "Wrong Email or Password";
         }
-
-        public async Task<Domain.Entities.User> GetUserByName(string nickName)
-        {
-
-            return await _db.Users
-                .FirstOrDefaultAsync(p => p.NickName == nickName);
-        }
-
-
 
         public async Task<bool> UserExist(string email)
         {

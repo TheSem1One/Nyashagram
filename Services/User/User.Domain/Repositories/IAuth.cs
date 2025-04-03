@@ -1,4 +1,5 @@
 ﻿using User.Domain.DTO;
+using User.Domain.DTO.Auth;
 
 namespace User.Domain.Repositories
 {
@@ -6,6 +7,5 @@ namespace User.Domain.Repositories
     {
         Task<string> CreateUser(RegisterDto registerDto);
         Task<string> LoginUser(LoginDto loginDto);
-        Task<Entities.User> GetUserByName(string name);
     }
 }

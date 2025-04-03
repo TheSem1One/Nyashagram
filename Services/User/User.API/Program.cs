@@ -26,10 +26,11 @@ namespace User.API
             //Register AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             //RegisterMediator 
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetUserQuery).Assembly));
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
             //Register App Services
             builder.Services.AddScoped<IAuth, AuthService>();
             builder.Services.AddScoped<IProfile, ProfileService>();
+            builder.Services.AddScoped<IUsers, UsersService>();
             builder.Services.AddScoped<TokenManipulation>();
             builder.Services.AddScoped<HashPassword>();
             builder.Services.AddScoped<UserIdentity>();

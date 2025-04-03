@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using User.Application.Mappers;
 using User.Domain.DTO;
+using User.Domain.DTO.Profile;
 using User.Domain.Repositories;
 
 namespace User.Application.Features.Profile
@@ -18,7 +19,7 @@ namespace User.Application.Features.Profile
         private readonly IProfile _profile = profile;
         public async Task<bool> Handle(UpdateProfileCommand request, CancellationToken cancellationToken)
         {
-            var user = UserMapper.Mapper.Map<ProfileDto>(request);
+            var user = UserMapper.Mapper.Map<UpdateProfileDto>(request);
             return await _profile.UpdateProfile(user);
         }
     }

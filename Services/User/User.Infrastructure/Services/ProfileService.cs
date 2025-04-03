@@ -2,6 +2,7 @@
 using System.Net;
 using System.Web.Http;
 using User.Domain.DTO;
+using User.Domain.DTO.Profile;
 using User.Domain.Repositories;
 using User.Infrastructure.Helpers;
 using User.Infrastructure.Persistence;
@@ -62,40 +63,10 @@ namespace User.Infrastructure.Services
 
         }
 
-        public async Task<bool> Subscribe(SubscribeDto subscribeDto)
+        public async Task<bool> UpdateProfile(UpdateProfileDto updateProfileDto)
         {
-            if (subscribeDto.CurrentNickName == subscribeDto.TargetNickName) return false;
-            var currentUser = await _db.Users
-                .SingleOrDefaultAsync(p => p.NickName.ToLower() == subscribeDto.CurrentNickName.ToLower());
-            var targetUser =
-                await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == subscribeDto.TargetNickName.ToLower());
-            currentUser.Subscriptions.Add(subscribeDto.TargetNickName);
-            targetUser.Subscribers.Add(subscribeDto.CurrentNickName);
-            _db.Users.Update(currentUser);
-            _db.Users.Update(targetUser);
-            await _db.SaveChangesAsync();
-            return true;
-        }
-        public async Task<bool> Unsubscribe(SubscribeDto subscribeDto)
-        {
-            if (subscribeDto.CurrentNickName == subscribeDto.TargetNickName) return false;
-            var currentUser = await _db.Users
-                .SingleOrDefaultAsync(p => p.NickName.ToLower() == subscribeDto.CurrentNickName.ToLower());
-            var targetUser =
-                await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == subscribeDto.TargetNickName.ToLower());
-            currentUser.Subscriptions.Remove(subscribeDto.TargetNickName);
-            targetUser.Subscribers.Remove(subscribeDto.CurrentNickName);
-            _db.Users.Update(currentUser);
-            _db.Users.Update(targetUser);
-            await _db.SaveChangesAsync();
-            return true;
-
-        }
-
-        public async Task<bool> UpdateProfile(ProfileDto profileDto)
-        {
-            var user = await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == profileDto.NickName.ToLower());
-            var updatedUser = _updateUser.Update(user, profileDto);
+            var user = await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == updateProfileDto.NickName.ToLower());
+            var updatedUser = _updateUser.Update(user, updateProfileDto);
             _db.Users.Update(updatedUser);
             await _db.SaveChangesAsync();
             return true;

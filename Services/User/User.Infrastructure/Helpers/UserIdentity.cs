@@ -1,4 +1,5 @@
 ﻿using User.Domain.DTO;
+using User.Domain.DTO.Profile;
 using User.Infrastructure.Persistence;
 
 namespace User.Infrastructure.Helpers
@@ -8,19 +9,18 @@ namespace User.Infrastructure.Helpers
         private readonly UserContext _db = db;
         private readonly HashPassword _hashPassword = hashPassword;
 
-        public UserDto GetJwtUser(string email)
+        public ProfileDto GetJwtUser(string email)
         {
             var user = _db.Users.SingleOrDefault(user => user.Email.ToLower() == email.ToLower());
-            var userDto = new UserDto
+            var userDto = new ProfileDto
             {
                 NickName = user.NickName,
                 BirthDate = user.BirthDate,
                 Posts = user.Posts,
-                SavedPosts = user.SavedPosts,
                 StoriesList = user.StoriesList,
                 Subscriptions = user.Subscriptions,
                 Subscribers = user.Subscribers,
-                 
+
             };
             return userDto;
 

@@ -10,13 +10,6 @@ namespace User.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpGet("{NickName}")]
-        public async Task<ActionResult<UserResponse>> GetUser([FromRoute] GetUserQuery query)
-        {
-            var result = await _mediator.Send((query));
-            return Ok(result);
-        }
-
         [HttpPost("register")]
         public async Task<ActionResult<AuthResponse>> CreateUser([FromBody] CreateUserCommand command)
         {

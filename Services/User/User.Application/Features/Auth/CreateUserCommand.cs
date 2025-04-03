@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using User.Application.Mappers;
 using User.Application.Responses;
-using User.Domain.DTO;
+using User.Domain.DTO.Auth;
 using User.Domain.Repositories;
 
 namespace User.Application.Features.Auth
