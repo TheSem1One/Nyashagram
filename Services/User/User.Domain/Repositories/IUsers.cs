@@ -4,6 +4,7 @@ namespace User.Domain.Repositories
 {
     public interface IUsers
     {
-        Task<UserDto>
+        Task<UserDto> GetUserByNickName(string nickName);
+        Task<FindDto> FindUser(string nickName);
     }
 }
