@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using User.Application.Mappers;
 using User.Domain.DTO;
 using User.Domain.Repositories;

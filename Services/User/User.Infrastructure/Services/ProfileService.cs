@@ -34,9 +34,20 @@ namespace User.Infrastructure.Services
             return true;
         }
 
-        public Task<bool> Unscribe(string currentUser, string targetNickName)
+        public async Task<bool> Unsubscribe(string currentNickName, string targetNickName)
         {
-            throw new NotImplementedException();
+            if (currentNickName == targetNickName) return false;
+            var currentUser = await _db.Users
+                .SingleOrDefaultAsync(p => p.NickName.ToLower() == currentNickName.ToLower());
+            var targetUser =
+                await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == targetNickName.ToLower());
+            currentUser.Subscriptions.Remove(targetNickName);
+            targetUser.Subscribers.Remove(currentNickName);
+            _db.Users.Update(currentUser);
+            _db.Users.Update(targetUser);
+            await _db.SaveChangesAsync();
+            return true;
+
         }
 
         public async Task<bool> UpdateProfile(ProfileDto profileDto)

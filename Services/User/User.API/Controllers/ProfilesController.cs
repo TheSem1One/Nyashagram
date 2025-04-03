@@ -5,7 +5,7 @@ using User.Domain.DTO;
 
 namespace User.API.Controllers
 {
-    public class UsersController(IMediator mediator) : ApiController
+    public class ProfilesController(IMediator mediator) : ApiController
     {
         private readonly IMediator _mediator = mediator;
 
@@ -26,6 +26,13 @@ namespace User.API.Controllers
 
         [HttpPatch("subscribe")]
         public async Task<ActionResult<bool>> Subscribe([FromBody] SubscribeCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPatch("unsubscribe")]
+        public async Task<ActionResult<bool>> Unsubscribe([FromBody] UnsubscribeCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

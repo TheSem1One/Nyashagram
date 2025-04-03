@@ -6,7 +6,7 @@ namespace User.Domain.Repositories
     {
         Task<bool> UpdateProfile(ProfileDto profileDto);
         Task<bool> Subscribe(string currentUser, string targetNickName);
-        Task<bool> Unscribe(string currentUser ,string targetNickName);
+        Task<bool> Unsubscribe(string currentUser ,string targetNickName);
         Task<Entities.User> GetProfile(string nickName);
 
 
