@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 		<PackageReference Include="JWT" Version="11.0.0" />
+		<PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using User.Application.Mappers;
+using User.Domain.DTO;
 using User.Domain.Repositories;
 
 namespace User.Application.Features.Profile
@@ -14,7 +16,8 @@ namespace User.Application.Features.Profile
         private readonly IProfile _profile = profile;
         public async Task<bool> Handle(SubscribeCommand request, CancellationToken cancellationToken)
         {
-            return await _profile.Subscribe(request.CurrentName, request.TargetName);
+            var req = UserMapper.Mapper.Map<SubscribeDto>(request);
+            return await _profile.Subscribe(req);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace User.Application.Features.Profile
 {
     public class GetProfileQuery : IRequest<UserDto>
     {
-        public string NickName { get; set; }
+        public string NickName { get; set; } = null!;
     }
 
     public class GetProfileHandler(IProfile profile) : IRequestHandler<GetProfileQuery, UserDto>
@@ -16,7 +16,7 @@ namespace User.Application.Features.Profile
         public async Task<UserDto> Handle(GetProfileQuery request, CancellationToken cancellationToken)
         {
             var user = await _profile.GetProfile(request.NickName);
-            return UserMapper.Mapper.Map<Domain.Entities.User, UserDto>(user);
+            return UserMapper.Mapper.Map<UserDto>(user);
         }
     }
 }

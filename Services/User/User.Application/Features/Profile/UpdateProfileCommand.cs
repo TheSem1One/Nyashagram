@@ -18,7 +18,7 @@ namespace User.Application.Features.Profile
         private readonly IProfile _profile = profile;
         public async Task<bool> Handle(UpdateProfileCommand request, CancellationToken cancellationToken)
         {
-            var user = UserMapper.Mapper.Map<UpdateProfileCommand, ProfileDto>(request);
+            var user = UserMapper.Mapper.Map<ProfileDto>(request);
             return await _profile.UpdateProfile(user);
         }
     }
