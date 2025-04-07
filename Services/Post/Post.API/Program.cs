@@ -1,9 +1,14 @@
-﻿using Microsoft.OpenApi.Models;
-using Post.Application.Commands;
+﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
+using Post.API.Transformers;
+using Post.Application.Features.Post;
 using Post.Domain.Repositories;
 using Post.Infrastructure.Data;
 using Post.Infrastructure.Persistence;
 using Post.Infrastructure.Services;
+using System.Net.Mime;
+using System.Text.Json.Serialization;
 
 
 namespace Post.API
@@ -28,8 +33,17 @@ namespace Post.API
             builder.Services.AddTransient<IPostContext, PostContext>();
             builder.Services.AddScoped<IPostRepository, PostService>();
             builder.Services.AddTransient<IPostRepository, PostService>();
-           
-            
+
+            builder.Services
+                .AddControllers(options =>
+                {
+                    options.Filters.Add(new ProducesAttribute(MediaTypeNames.Application.Json));
+                    options.Conventions.Add(new RouteTokenTransformerConvention(new ToKebabParameterTransformer()));
+                })
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
 
 
             builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>

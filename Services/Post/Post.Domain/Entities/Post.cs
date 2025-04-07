@@ -21,11 +21,24 @@ namespace Post.Domain.Entities
         [BsonElement("CreateDateTime"), BsonRepresentation(BsonType.DateTime)]
         public DateTime CreateDateTime { get; set; }
 
-        [BsonElement("Comments")]
-        public List<Comment>? Comments { get; set; }
+        [BsonElement("Comments")] public List<Comment> Comments { get; set; } = new List<Comment>();
 
-        [BsonElement("Likes")]
-        public Like? Likes { get; set; }
+        [BsonElement("Likes")] public Like Likes { get; set; } = new Like();
 
+    }
+    public class Like
+    {
+        [BsonElement("CountLike"), BsonRepresentation(BsonType.Int64)]
+        public int CountLike { get; set; }
+
+        [BsonElement("LikerNickName")] public List<string> LikesNickName { get; set; } = new List<string>();
+    }
+    public class Comment
+    {
+        [BsonElement("CommentatorNickName"), BsonRepresentation(BsonType.String)]
+        public string? ComentatorNickName { get; set; }
+
+        [BsonElement("Notes"), BsonRepresentation(BsonType.String)]
+        public string? Notes { get; set; }
     }
 }

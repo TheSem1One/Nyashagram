@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Post.Application.Queries;
+using Post.Application.Features.Post;
 using Post.Application.Responses;
 
 namespace Post.API.Controllers

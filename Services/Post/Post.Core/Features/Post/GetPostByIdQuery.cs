@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
 using MediatR;
 using Post.Application.Mappers;
-using Post.Application.Queries;
 using Post.Application.Responses;
 using Post.Domain.Repositories;
 
-namespace Post.Application.Handles
+namespace Post.Application.Features.Post
 {
+    public class GetPostByIdQuery : IRequest<GetPostByIdResponse>
+    {
+        public string PostId { get; set; } = null!;
+    }
+
     public class GetPostByIdHandler(IPostRepository postRepository, IMapper mapper) : IRequestHandler<GetPostByIdQuery, GetPostByIdResponse>
     {
         private readonly IPostRepository _postRepository = postRepository;

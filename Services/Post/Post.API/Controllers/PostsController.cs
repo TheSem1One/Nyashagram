@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Post.Application.Commands;
-using Post.Application.Queries;
 using Post.Application.Responses;
 using Post.Domain.Entities.DTO;
 
@@ -14,7 +12,7 @@ namespace Post.API.Controllers
         [HttpPost]
         public async Task<ActionResult<CreatePostResponse>> CreatePost([FromBody] PostDto postDto)
         {
-            var result = await _mediator.Send(new CreatePostCommand(){Description = postDto.Description,ImageUrl = postDto.ImageUrl,NickName = postDto.NickName});
+            var result = await _mediator.Send(new CreatePostCommand() { Description = postDto.Description, ImageUrl = postDto.ImageUrl, NickName = postDto.NickName });
             return Ok(result);
         }
 
@@ -36,11 +34,29 @@ namespace Post.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<DeletePostResponse>> DeletePost([FromRoute]string id)
+        public async Task<ActionResult<DeletePostResponse>> DeletePost([FromRoute] string id)
         {
             var query = new DeletePostCommand() { PostId = id };
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<bool>> Like([FromBody] LikeCommand command)
+        {
+            return await _mediator.Send(command);
+        }
+
+        [HttpPatch("addcomments")]
+        public async Task<ActionResult<bool>> AddComments([FromBody] CreateCommentsCommand command)
+        {
+            return await _mediator.Send(command);
+        }
+
+        [HttpPatch("deletecomments")]
+        public async Task<ActionResult<bool>> DeleteComments([FromBody] DeleteCommentsCommand command)
+        {
+            return await _mediator.Send(command);
         }
     }
 }
