@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using Post.Domain.Entities;
 using Post.Domain.Entities.DTO;
 using Post.Domain.Repositories;
 using Post.Infrastructure.Persistence;
@@ -48,5 +49,19 @@ namespace Post.Infrastructure.Services
             var deletedPost = await _context.Post.DeleteOneAsync(p => p.PostId == id);
             return deletedPost.IsAcknowledged & deletedPost.DeletedCount > 0;
         }
+
+        public async Task<bool> Comments(CommentsDto comments)
+        {
+            var filter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, comments.Id);
+            var newComment = new Comment
+            {
+                ComentatorNickName = comments.NickName,
+                Notes = comments.Description
+            };
+            var update = Builders<Domain.Entities.Post>.Update.Push(p => p.Comments, newComment);
+            var result = await _context.Post.UpdateOneAsync(filter, update);
+            return result.ModifiedCount > 0;
+        }
+
     }
 }
