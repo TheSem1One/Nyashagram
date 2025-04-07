@@ -12,6 +12,7 @@ namespace Post.Application.Mappers
             CreateMap<Domain.Entities.Post, GetPostResponse>().ReverseMap();
             CreateMap<Domain.Entities.Post, GetPostByIdResponse>().ReverseMap();
             CreateMap<CreatePostCommand, PostDto>().ReverseMap();
+            CreateMap<AddCommentCommand, CommentsDto>().ReverseMap();
         }
     }
 }

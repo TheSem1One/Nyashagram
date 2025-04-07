@@ -14,7 +14,7 @@ namespace Post.API.Controllers
         [HttpPost]
         public async Task<ActionResult<CreatePostResponse>> CreatePost([FromBody] PostDto postDto)
         {
-            var result = await _mediator.Send(new CreatePostCommand(){Description = postDto.Description,ImageUrl = postDto.ImageUrl,NickName = postDto.NickName});
+            var result = await _mediator.Send(new CreatePostCommand() { Description = postDto.Description, ImageUrl = postDto.ImageUrl, NickName = postDto.NickName });
             return Ok(result);
         }
 
@@ -36,11 +36,17 @@ namespace Post.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<DeletePostResponse>> DeletePost([FromRoute]string id)
+        public async Task<ActionResult<DeletePostResponse>> DeletePost([FromRoute] string id)
         {
             var query = new DeletePostCommand() { PostId = id };
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<bool>> Comments([FromBody] AddCommentCommand command)
+        {
+            return await _mediator.Send(command);
         }
     }
 }
