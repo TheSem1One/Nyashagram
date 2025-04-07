@@ -9,6 +9,8 @@ namespace Post.Domain.Repositories
         Task<Entities.Post> GetPostById(string id);
         Task<string> CreatePost(PostDto postDto);
         Task<bool> DeletePost(string id);
-        Task<bool> Comments(CommentsDto comments);
+        Task<bool> Like(LikeDto dto);
+        Task<bool> DeleteComments(CommentsDto dto);
+        Task<bool> AddComments(CommentsDto dto);
     }
 }

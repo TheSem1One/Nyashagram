@@ -50,7 +50,7 @@ namespace Post.Infrastructure.Services
             return deletedPost.IsAcknowledged & deletedPost.DeletedCount > 0;
         }
 
-        public async Task<bool> Comments(CommentsDto comments)
+        public async Task<bool> AddComments(CommentsDto comments)
         {
             var filter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, comments.Id);
             var newComment = new Comment
@@ -63,5 +63,42 @@ namespace Post.Infrastructure.Services
             return result.ModifiedCount > 0;
         }
 
+        public async Task<bool> DeleteComments(CommentsDto comments)
+        {
+            var filter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, comments.Id);
+            var commentToRemove = Builders<Domain.Entities.Post>.Filter.ElemMatch(
+                p => p.Comments,
+                c => c.ComentatorNickName == comments.NickName && c.Notes == comments.Description);
+            var update = Builders<Domain.Entities.Post>.Update.PullFilter(p => p.Comments,
+                c => c.ComentatorNickName == comments.NickName && c.Notes == comments.Description);
+            var result = await _context.Post.UpdateOneAsync(filter, update);
+
+            return result.ModifiedCount > 0;
+        }
+
+        public async Task<bool> Like(LikeDto dto)
+        {
+            var postFilter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, dto.Id);
+            var existingPost = await _context.Post.Find(postFilter).FirstOrDefaultAsync();
+            if (existingPost.Likes.LikesNickName.Contains(dto.NickName))
+            {
+                var update = Builders<Domain.Entities.Post>.Update
+                    .Inc(p => p.Likes.CountLike, -1)
+                    .Pull(p => p.Likes.LikesNickName, dto.NickName);
+                var result = await _context.Post.UpdateOneAsync(postFilter, update);
+                return result.ModifiedCount > 0;
+            }
+            else
+            {
+                var update = Builders<Domain.Entities.Post>.Update
+                    .Inc(p => p.Likes.CountLike, 1)
+                    .Push(p => p.Likes.LikesNickName, dto.NickName);
+                var result = await _context.Post.UpdateOneAsync(postFilter, update);
+                return result.ModifiedCount > 0;
+            }
+        }
+
     }
+
 }
+

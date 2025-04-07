@@ -44,7 +44,19 @@ namespace Post.API.Controllers
         }
 
         [HttpPatch]
-        public async Task<ActionResult<bool>> Comments([FromBody] AddCommentCommand command)
+        public async Task<ActionResult<bool>> Like([FromBody] LikeCommand command)
+        {
+            return await _mediator.Send(command);
+        }
+
+        [HttpPatch("addcomments")]
+        public async Task<ActionResult<bool>> AddComments([FromBody] CreateCommentsCommand command)
+        {
+            return await _mediator.Send(command);
+        }
+
+        [HttpPatch("deletecomments")]
+        public async Task<ActionResult<bool>> DeleteComments([FromBody] DeleteCommentsCommand command)
         {
             return await _mediator.Send(command);
         }
