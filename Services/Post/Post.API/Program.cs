@@ -1,5 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
-using Post.Application.Commands;
+using Post.Application.Features.Post;
 using Post.Domain.Repositories;
 using Post.Infrastructure.Data;
 using Post.Infrastructure.Persistence;

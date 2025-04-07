@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Post.Application.Commands;
+using Post.Application.Features.Post;
 using Post.Application.Responses;
 using Post.Domain.Entities.DTO;
 
