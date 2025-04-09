@@ -1,5 +1,5 @@
 using Microsoft.OpenApi.Models;
-using Stories.Application.Commands;
+using Stories.Application.Features.Stories;
 using Stories.Domain.Repositories;
 using Stories.Infrastructure.Data;
 using Stories.Infrastructure.Persistence;

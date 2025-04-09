@@ -1,12 +1,17 @@
 ﻿using MediatR;
-using Stories.Application.Commands;
 using Stories.Application.Mappers;
 using Stories.Application.Responses;
 using Stories.Domain.Entity.DTO;
 using Stories.Domain.Repositories;
 
-namespace Stories.Application.Handles
+namespace Stories.Application.Features.Stories
 {
+    public class CreateStoryCommand : IRequest<CreateStoryResponse>
+    {
+        public string StoryImageUrl { get; set; } = null!;
+        public string CreatorNickName { get; set; } = null!;
+    }
+
     public class CreateStoryHandler(IStoriesRepository storiesRepository) : IRequestHandler<CreateStoryCommand, CreateStoryResponse>
     {
         private readonly IStoriesRepository _storyRepository = storiesRepository;

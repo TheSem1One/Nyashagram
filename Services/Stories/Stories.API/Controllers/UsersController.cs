@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Stories.Application.Queries;
+using Stories.Application.Features.Stories;
 
 namespace Stories.API.Controllers
 {

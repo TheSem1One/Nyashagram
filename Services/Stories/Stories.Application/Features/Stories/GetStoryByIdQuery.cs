@@ -1,12 +1,15 @@
 ﻿using MediatR;
 using Stories.Application.Mappers;
-using Stories.Application.Queries;
 using Stories.Application.Responses;
 using Stories.Domain.Entity;
 using Stories.Domain.Repositories;
-
-namespace Stories.Application.Handles
+namespace Stories.Application.Features.Stories
 {
+    public class GetStoryByIdQuery : IRequest<GetStoryByIdResponse>
+    {
+        public string StoryId { get; set; } = null!;
+    }
+
     class GetStoryByIdHandler(IStoriesRepository storiesRepository) : IRequestHandler<GetStoryByIdQuery, GetStoryByIdResponse>
     {
         private readonly IStoriesRepository _storiesRepository = storiesRepository;

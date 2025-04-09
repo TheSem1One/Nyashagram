@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Stories.Application.Commands;
-using Stories.Application.Queries;
+using Stories.Application.Features.Stories;
 using Stories.Application.Responses;
 using Stories.Domain.Entity.DTO;
 
@@ -16,7 +15,7 @@ namespace Stories.API.Controllers
         {
             var result = await _mediator.Send(new CreateStoryCommand()
             {
-                StoriesImageUrl = shortDto.StoryImageUrl,
+                StoryImageUrl = shortDto.StoryImageUrl,
                 CreatorNickName = shortDto.CreatorNickName
             });
             return Ok(result);

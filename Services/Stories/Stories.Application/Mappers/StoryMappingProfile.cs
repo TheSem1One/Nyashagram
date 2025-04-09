@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Stories.Application.Commands;
-using Stories.Application.Queries;
+using Stories.Application.Features.Stories;
 using Stories.Application.Responses;
 using Stories.Domain.Entity;
 using Stories.Domain.Entity.DTO;
