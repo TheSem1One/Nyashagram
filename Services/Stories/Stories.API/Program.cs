@@ -1,9 +1,14 @@
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Stories.Application.Features.Stories;
 using Stories.Domain.Repositories;
 using Stories.Infrastructure.Data;
 using Stories.Infrastructure.Persistence;
 using Stories.Infrastructure.Services;
+using System.Net.Mime;
+using System.Text.Json.Serialization;
+using Stories.API.Transformers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +27,16 @@ builder.Services.AddOpenApi();
 builder.Services.AddTransient<IStoriesContext, StoriesContext>();
 builder.Services.AddScoped<IStoriesRepository, StoriesService>();
 builder.Services.AddTransient<IStoriesRepository, StoriesService>();
-
+builder.Services
+    .AddControllers(options =>
+    {
+        options.Filters.Add(new ProducesAttribute(MediaTypeNames.Application.Json));
+        options.Conventions.Add(new RouteTokenTransformerConvention(new ToKebabParameterTransformer()));
+    })
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
 {
     corsPolicyBuilder
