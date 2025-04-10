@@ -1,10 +1,13 @@
 ﻿using MediatR;
-using Stories.Application.Commands;
 using Stories.Application.Responses;
 using Stories.Domain.Repositories;
-
-namespace Stories.Application.Handles
+namespace Stories.Application.Features.Stories
 {
+    public class DeleteStoryCommand : IRequest<DeleteStoryResponse>
+    {
+        public string StoryId { get; set; } = null!;
+    }
+
     class DeleteStoryHandler(IStoriesRepository storiesRepository) : IRequestHandler<DeleteStoryCommand, DeleteStoryResponse>
     {
         private readonly IStoriesRepository _storiesRepository = storiesRepository;

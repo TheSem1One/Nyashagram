@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Post.Application.Features.Post;
 using Post.Application.Responses;
 using Post.Domain.Entities.DTO;
 

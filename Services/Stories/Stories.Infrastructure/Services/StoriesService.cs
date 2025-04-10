@@ -45,5 +45,27 @@ namespace Stories.Infrastructure.Services
                 .Find(s => s.CreatorNickName.ToLower() == nickName.ToLower())
                 .ToListAsync();
         }
+
+        public async Task<bool> Like(LikeDto dto)
+        {
+            var postFilter = Builders<Short>.Filter.Eq(p => p.StoryId, dto.StoryId);
+            var existingPost = await _context.Shorts.Find(postFilter).FirstOrDefaultAsync();
+            if (existingPost.Likes.LikesNickName.Contains(dto.NickName))
+            {
+                var update = Builders<Short>.Update
+                    .Inc(p => p.Likes.CountLike, -1)
+                    .Pull(p => p.Likes.LikesNickName, dto.NickName);
+                var result = await _context.Shorts.UpdateOneAsync(postFilter, update);
+                return result.ModifiedCount > 0;
+            }
+            else
+            {
+                var update = Builders<Short>.Update
+                    .Inc(p => p.Likes.CountLike, 1)
+                    .Push(p => p.Likes.LikesNickName, dto.NickName);
+                var result = await _context.Shorts.UpdateOneAsync(postFilter, update);
+                return result.ModifiedCount > 0;
+            }
+        }
     }
 }

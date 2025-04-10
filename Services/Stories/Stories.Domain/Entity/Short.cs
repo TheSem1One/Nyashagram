@@ -18,9 +18,14 @@ namespace Stories.Domain.Entity
         [BsonElement("ExpireTime"), BsonRepresentation(BsonType.DateTime)]
         public DateTime ExpireTime { get; set; }
 
-        [BsonElement("Likes"), BsonRepresentation(BsonType.Int64)]
-        public int? Likes { get; set; }
+        [BsonElement("Likes")] public Like Likes { get; set; } = new Like();
 
+    }
+    public class Like
+    {
+        [BsonElement("CountLike"), BsonRepresentation(BsonType.Int64)]
+        public int CountLike { get; set; }
 
+        [BsonElement("LikerNickName")] public List<string> LikesNickName { get; set; } = new List<string>();
     }
 }
