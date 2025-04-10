@@ -14,6 +14,7 @@ namespace Stories.Application.Mappers
             CreateMap<string, GetStoryByCreatorQuery>().ReverseMap();
             CreateMap<Short, GetStoryResponse>().ReverseMap();
             CreateMap<Short, GetStoryByIdResponse>().ReverseMap();
+            CreateMap<LikeCommand, LikeDto>().ReverseMap();
         }
 
     }

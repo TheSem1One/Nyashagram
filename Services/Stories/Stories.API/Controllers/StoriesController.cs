@@ -40,5 +40,11 @@ namespace Stories.API.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        [HttpPatch("like")]
+        public async Task<ActionResult<bool>> Like([FromBody] LikeCommand command)
+        {
+            return await _mediator.Send(command);
+        }
     }
 }
