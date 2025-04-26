@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Web.Http;
+using User.Application.Common.Exceptions;
 using User.Domain.DTO;
 using User.Domain.DTO.Users;
 using User.Domain.Repositories;
@@ -23,12 +24,7 @@ namespace User.Infrastructure.Services
                 .ToListAsync();
             if (users is null)
             {
-                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format($"No User with NickName = {nickName}", 404)),
-                    ReasonPhrase = "User NickName Not Found"
-                };
-                throw new HttpResponseException(resp);
+                throw new UserNotFoundException();
             }
             return users;
         }
@@ -36,6 +32,10 @@ namespace User.Infrastructure.Services
         public async Task<GetUserDto> GetUserByNickName(string nickName)
         {
             var user = await _db.Users.SingleOrDefaultAsync(p => p.NickName.ToLower() == nickName.ToLower());
+            if (user is null)
+            {
+                throw new UserNotFoundException();
+            }
             var userDto = new GetUserDto()
             {
                 NickName = user.NickName,

@@ -7,6 +7,7 @@ using static System.Net.WebRequestMethods;
 using System.Net;
 using System.Web.Http;
 using User.Domain.DTO.Auth;
+using User.Application.Common.Exceptions;
 
 namespace User.Infrastructure.Services
 {
@@ -21,13 +22,8 @@ namespace User.Infrastructure.Services
         public async Task<string> CreateUser(RegisterDto registerDto)
         {
             if (await UserExist(registerDto.Email))
-            {
-                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent(string.Format($"Email Exist", 409)),
-                    ReasonPhrase = "User Email Already Exist"
-                };
-                throw new HttpResponseException(resp);
+            { 
+                throw new UserExistException(registerDto.Email);
             }
             registerDto.Password = _hashPassword.HashingPassword(registerDto.Password);
 
@@ -57,7 +53,7 @@ namespace User.Infrastructure.Services
 
             }
 
-            return "Wrong Email or Password";
+            throw new UserExistException();
         }
 
         public async Task<bool> UserExist(string email)

@@ -6,7 +6,7 @@ using User.Domain.Repositories;
 
 namespace User.Application.Features.Auth
 {
-    public class CreateUserCommand : IRequest<AuthResponse>
+    public class CreateUserCommand : IRequest<string>
     {
         public string NickName { get; set; } = null!;
         public string Email { get; set; } = null!;
@@ -15,11 +15,11 @@ namespace User.Application.Features.Auth
 
     }
 
-    public class CreateUserCommandHandler(IAuth auth) : IRequestHandler<CreateUserCommand, AuthResponse>
+    public class CreateUserCommandHandler(IAuth auth) : IRequestHandler<CreateUserCommand, string>
     {
         private readonly IAuth _auth = auth;
 
-        public async Task<AuthResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var user = UserMapper.Mapper.Map<RegisterDto>(request);
             if (user is null)
@@ -27,7 +27,7 @@ namespace User.Application.Features.Auth
                 throw new ApplicationException("There is an issue with mapping while creating new User");
             }
             var token = await _auth.CreateUser(user);
-            return new AuthResponse { Token = token };
+            return token;
         }
     }
 

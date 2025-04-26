@@ -50,7 +50,7 @@ builder.Services
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 var app = builder.Build();
-
+app.UseCors("AllowAny");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -10,6 +10,8 @@ using User.Infrastructure.Helpers;
 using System.Text.Json.Serialization;
 using User.Application.Features.Auth;
 using User.Infrastructure.Services;
+using User.API.Middelwares;
+using Serilog;
 
 namespace User.API
 {
@@ -20,6 +22,12 @@ namespace User.API
         {
 
             var builder = WebApplication.CreateBuilder(args);
+
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .CreateLogger();
+
+            builder.Host.UseSerilog(logger);
 
             builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Auth.API", Version = "v1" }));
             builder.Services.AddControllers();
@@ -55,12 +63,13 @@ namespace User.API
                 corsPolicyBuilder
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowAnyOrigin();
+                    .AllowAnyOrigin(); // NOTE: not recommended for production
             }));
 
             var app = builder.Build();
             app.ApplyMigration();
-
+            app.UseCors("AllowAny");
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
