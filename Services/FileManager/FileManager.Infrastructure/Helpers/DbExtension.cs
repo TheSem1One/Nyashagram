@@ -1,22 +1,23 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using FileManager.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using User.Infrastructure.Persistence;
 
-namespace User.Infrastructure.Helpers
+namespace FileManager.Infrastructure.Helpers
 {
     public static class DbExtension
     {
         public static void ApplyMigration(this IApplicationBuilder app)
         {
             using IServiceScope scope = app.ApplicationServices.CreateScope();
-            using UserContext dbContext = scope.ServiceProvider.GetRequiredService<UserContext>();
-
+            using FileManagerContext dbContext =
+                scope.ServiceProvider.GetRequiredService<FileManagerContext>();
             var pendingMigrations = dbContext.Database.GetPendingMigrations();
             if (pendingMigrations.Any())
             {
                 dbContext.Database.Migrate();
             }
+            dbContext.Database.Migrate();
         }
     }
 }

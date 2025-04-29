@@ -4,7 +4,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8082
+EXPOSE 8080
 
 
 # This stage is used to build the service project
@@ -12,13 +12,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Services/Post/Post.API/Post.API.csproj", "Services/Post/Post.API/"]
-COPY ["Services/Post/Post.Core/Post.Application.csproj", "Services/Post/Post.Core/"]
-COPY ["Services/Post/Post.Domain/Post.Domain.csproj", "Services/Post/Post.Domain/"]
-COPY ["Services/Post/Post.Infrastructure/Post.Infrastructure.csproj", "Services/Post/Post.Infrastructure/"]
+COPY ["Services/Post/Post.API/Post.Application.csproj", "Services/Post/Post.Application/"]
+COPY ["Services/Post/Post.API/Post.Domain.csproj", "Services/Post/Post.Domain/"]
+COPY ["Services/Post/Post.API/Post.Infrastructure.csproj", "Services/Post/Post.Infrastructure/"]
 RUN dotnet restore "./Services/Post/Post.API/Post.API.csproj"
-RUN dotnet restore "./Services/Post/Post.Core/Post.Application.csproj"
-RUN dotnet restore "./Services/Post/Post.Domain/Post.Domain.csproj"
-RUN dotnet restore "./Services/Post/Post.Infrastructure/Post.Infrastructure.csproj"
 COPY . .
 WORKDIR "/src/Services/Post/Post.API"
 RUN dotnet build "./Post.API.csproj" -c $BUILD_CONFIGURATION -o /app/build

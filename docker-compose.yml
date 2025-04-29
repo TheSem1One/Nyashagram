@@ -1,29 +1,122 @@
-version: "3.8"
 
 services:
-  auth.database:
-    image: postgres:latest
-    container_name: auth.database
-    environment:
-      POSTGRES_DB: cutiegram
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-    ports:
-      - 8001:5432
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
 
-  auth.api:
-    container_name: auth.api
+  filemanager:
+    image: ${DOCKER_REGISTRY-}filemanagerapi
+    container_name: file-manager
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ApiDatabase=Host=filemanagerdb;Database=filemanager;Username=postgres;Password=admin
     depends_on:
-      - auth.database
+      - filemanagerdb
     build:
       context: .
-      dockerfile: Services/Auth/Auth.API/Dockerfile
+      dockerfile: Services/FileManager/FileManager.API/Dockerfile
     ports:
-     - 8070:8080
+        - "8001:80"
 
-volumes:
-  postgres-data:
+  post:
+    image: ${DOCKER_REGISTRY-}postapi
+    container_name: post-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DbConnection=mongodb://postdb:27017
+      - ConnectionStrings__DbName=post_mongodb
+      - ConnectionStrings__DbCollection=post
+    depends_on:
+      - postdb
+    build:
+      context: .
+      dockerfile: Services/Post/Post.API/Dockerfile
+    ports:
+     - "8002:80"
+
+  stories:
+    image: ${DOCKER_REGISTRY-}storiesapi
+    container_name: stories-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DbConnection=mongodb://storiesdb:27018
+      - ConnectionStrings__DbName=stories_mongodb
+      - ConnectionStrings__DbCollection=stories
+    depends_on:
+      - storiesdb
+    build:
+      context: .
+      dockerfile: Services/Stories/Stories.API/Dockerfile
+    ports:
+    - "8003:80"
+
+  user:
+    image: ${DOCKER_REGISTRY-}userapi
+    container_name: user-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ApiDatabase=Host=userdb;Database=user;Username=postgres;Password=admin
+    depends_on:
+      - userdb
+    build:
+      context: .
+      dockerfile: Services/User/User.API/Dockerfile
+    ports:
+        - "8004:80"
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}api-gateway
+    container_name: apigateway
+    depends_on:
+      - filemanager
+      - post
+      - stories
+      - user
+    ports:
+      - "8010:80"
+    build:
+      context: .
+      dockerfile: Infrastructure/ApiGateway/Dockerfile
+
+  postdb:
+    image: mongo:latest
+    container_name: postdb
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=post_mongodb
+    ports:
+      - "27017:27017"
+
+
+  storiesdb:
+    image: mongo:latest
+    container_name: storiesdb
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=stories_mongodb
+    ports:
+      - "27018:27017"
+
+  filemanagerdb:
+    image: postgres:11
+    container_name: filemanagerdb
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=filemanager
+    ports:
+      - "9002:5432"
+
+
+  userdb:
+    image: postgres:11
+    container_name: userdb
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=user
+    ports:
+      - "9001:5432"

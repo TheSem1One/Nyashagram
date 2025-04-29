@@ -1,3 +1,4 @@
+using System;
 using System.Net.Mime;
 using System.Text.Json.Serialization;
 using FileManager.API.Transformer;
@@ -51,13 +52,20 @@ builder.Services
     });
 var app = builder.Build();
 app.UseCors("AllowAny");
+app.ApplyMigration();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ApplyMigration();
 }
-
+var contentPath = builder.Environment.ContentRootPath;
+var path = Path.Combine(contentPath, "Uploads");
+if (!Directory.Exists(path))
+{
+    Directory.CreateDirectory(path);
+}
 app.UseStaticFiles(
     new StaticFileOptions
     {

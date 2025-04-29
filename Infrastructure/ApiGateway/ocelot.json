@@ -4,23 +4,24 @@
     {
       "UpstreamPathTemplate": "/api/filemanager",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "filemanagerapi",
           "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/filemanager"
     },
-    //Post Service
+
+    // Post Service
     {
       "UpstreamPathTemplate": "/api/posts",
       "UpstreamHttpMethod": [ "Post", "Get", "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "postapi",
           "Port": 80
         }
       ],
@@ -29,10 +30,10 @@
     {
       "UpstreamPathTemplate": "/api/posts/{id}",
       "UpstreamHttpMethod": [ "Delete", "Get" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "postapi",
           "Port": 80
         }
       ],
@@ -41,10 +42,10 @@
     {
       "UpstreamPathTemplate": "/api/posts/addcomments",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "postapi",
           "Port": 80
         }
       ],
@@ -53,10 +54,10 @@
     {
       "UpstreamPathTemplate": "/api/posts/deletecomments",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "postapi",
           "Port": 80
         }
       ],
@@ -65,10 +66,10 @@
     {
       "UpstreamPathTemplate": "/api/users/{nickName}/posts",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "postapi",
           "Port": 80
         }
       ],
@@ -79,10 +80,10 @@
     {
       "UpstreamPathTemplate": "/api/stories",
       "UpstreamHttpMethod": [ "Post", "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "storiesapi",
           "Port": 80
         }
       ],
@@ -91,10 +92,10 @@
     {
       "UpstreamPathTemplate": "/api/stories/{id}",
       "UpstreamHttpMethod": [ "Get", "Delete" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "storiesapi",
           "Port": 80
         }
       ],
@@ -103,36 +104,24 @@
     {
       "UpstreamPathTemplate": "/api/users/{nickName}/stories",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "storiesapi",
           "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/users/{nickName}/stories"
     },
 
-    //User Service
+    // User Service
     {
       "UpstreamPathTemplate": "/api/auth/register",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
-          "Port": 80
-        }
-      ],
-      "DownstreamPathTemplate": "/api/auth/register"
-    },
-    {
-      "UpstreamPathTemplate": "/api/auth/register",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -141,10 +130,10 @@
     {
       "UpstreamPathTemplate": "/api/auth/login",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -153,10 +142,10 @@
     {
       "UpstreamPathTemplate": "/api/profiles/{nickName}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -165,10 +154,10 @@
     {
       "UpstreamPathTemplate": "/api/profiles",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -177,10 +166,10 @@
     {
       "UpstreamPathTemplate": "/api/profiles/addPost",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -189,10 +178,10 @@
     {
       "UpstreamPathTemplate": "/api/profiles/deletePost",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -201,10 +190,10 @@
     {
       "UpstreamPathTemplate": "/api/profiles/addStory",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -213,10 +202,10 @@
     {
       "UpstreamPathTemplate": "/api/profiles/deleteStory",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -225,10 +214,10 @@
     {
       "UpstreamPathTemplate": "/api/users/{nickName}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -237,10 +226,10 @@
     {
       "UpstreamPathTemplate": "/api/users/find={nickName}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
@@ -249,30 +238,30 @@
     {
       "UpstreamPathTemplate": "/api/users/subscribe",
       "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
+          "Host": "userapi",
           "Port": 80
         }
       ],
       "DownstreamPathTemplate": "/api/users/unsubscribe"
     },
     {
-      "UpstreamPathTemplate": "/api/users/subscribe",
-      "UpstreamHttpMethod": [ "Patch" ],
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/Resources/{everything}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost", //if will be doccker change localhost to host.docker.internal
-          "Port": 80
+          "Host": "filemanagerapi",
+          "Port": 5000
         }
       ],
-      "DownstreamPathTemplate": "/api/users/unsubscribe"
+      "UpstreamPathTemplate": "/Resources/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
 
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:800"
+    "BaseUrl": "http://localhost:800"
   }
 }
