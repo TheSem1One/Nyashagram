@@ -17,6 +17,9 @@ COPY ["Services/Stories/Stories.Application/Stories.Application.csproj", "Servic
 COPY ["Services/Stories/Stories.Domain/Stories.Domain.csproj", "Services/Stories/Stories.Domain/"]
 COPY ["Services/Stories/Stories.Infrastructure/Stories.Infrastructure.csproj", "Services/Stories/Stories.Infrastructure/"]
 RUN dotnet restore "./Services/Stories/Stories.API/Stories.API.csproj"
+RUN dotnet restore "./Services/Stories/Stories.Application/Stories.Application.csproj"
+RUN dotnet restore "./Services/Stories/Stories.Domain/Stories.Domain.csproj"
+RUN dotnet restore "./Services/Stories/Stories.Infrastructure/Stories.Infrastructure.csproj"
 COPY . .
 WORKDIR "/src/Services/Stories/Stories.API"
 RUN dotnet build "./Stories.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
