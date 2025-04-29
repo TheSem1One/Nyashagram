@@ -2,8 +2,8 @@
 services:
 
   filemanager:
-    image: ${DOCKER_REGISTRY-}filemanagerapi
-    container_name: file-manager
+    image: thesem1one/nyashagram1:latest
+    container_name: filemanager
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__ApiDatabase=Host=filemanagerdb;Database=filemanager;Username=postgres;Password=admin
@@ -13,11 +13,11 @@ services:
       context: .
       dockerfile: Services/FileManager/FileManager.API/Dockerfile
     ports:
-        - "8001:80"
+        - "8001:8080"
 
   post:
-    image: ${DOCKER_REGISTRY-}postapi
-    container_name: post-api
+    image: thesem1one/nyashagram2:latest
+    container_name: post
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DbConnection=mongodb://postdb:27017
@@ -29,11 +29,11 @@ services:
       context: .
       dockerfile: Services/Post/Post.API/Dockerfile
     ports:
-     - "8002:80"
+     - "8002:8080"
 
   stories:
-    image: ${DOCKER_REGISTRY-}storiesapi
-    container_name: stories-api
+    image: thesem1one/nyashagram3:latest
+    container_name: stories
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DbConnection=mongodb://storiesdb:27018
@@ -45,11 +45,11 @@ services:
       context: .
       dockerfile: Services/Stories/Stories.API/Dockerfile
     ports:
-    - "8003:80"
+    - "8003:8080"
 
   user:
-    image: ${DOCKER_REGISTRY-}userapi
-    container_name: user-api
+    image: thesem1one/nyashagram4:latest
+    container_name: user
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__ApiDatabase=Host=userdb;Database=user;Username=postgres;Password=admin
@@ -59,10 +59,10 @@ services:
       context: .
       dockerfile: Services/User/User.API/Dockerfile
     ports:
-        - "8004:80"
+        - "8004:8080"
 
   apigateway:
-    image: ${DOCKER_REGISTRY-}api-gateway
+    image: thesem1one/nyashagram5:latest
     container_name: apigateway
     depends_on:
       - filemanager
@@ -70,7 +70,7 @@ services:
       - stories
       - user
     ports:
-      - "8010:80"
+      - "8010:8080"
     build:
       context: .
       dockerfile: Infrastructure/ApiGateway/Dockerfile

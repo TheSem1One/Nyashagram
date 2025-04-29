@@ -7,8 +7,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "filemanagerapi",
-          "Port": 80
+          "Host": "filemanager",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/filemanager"
@@ -21,8 +21,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "postapi",
-          "Port": 80
+          "Host": "post",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/posts/"
@@ -33,8 +33,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "postapi",
-          "Port": 80
+          "Host": "post",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/posts/{id}"
@@ -45,8 +45,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "postapi",
-          "Port": 80
+          "Host": "post",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/posts/addcomments"
@@ -57,8 +57,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "postapi",
-          "Port": 80
+          "Host": "post",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/posts/deletecomments"
@@ -69,8 +69,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "postapi",
-          "Port": 80
+          "Host": "post",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/users/{nickName}/posts"
@@ -83,8 +83,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "storiesapi",
-          "Port": 80
+          "Host": "stories",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/stories"
@@ -95,8 +95,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "storiesapi",
-          "Port": 80
+          "Host": "stories",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/stories/{id}"
@@ -107,8 +107,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "storiesapi",
-          "Port": 80
+          "Host": "stories",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/users/{nickName}/stories"
@@ -121,8 +121,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/auth/register"
@@ -133,8 +133,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/auth/login"
@@ -145,8 +145,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/profiles/{nickName}"
@@ -157,8 +157,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/profiles/"
@@ -169,8 +169,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/profiles/addPost"
@@ -181,8 +181,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/profiles/deletePost"
@@ -193,8 +193,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/profiles/addStory"
@@ -205,8 +205,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/profiles/deleteStory"
@@ -217,8 +217,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/users/{nickName}"
@@ -229,8 +229,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/users/find={nickName}"
@@ -241,8 +241,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userapi",
-          "Port": 80
+          "Host": "user",
+          "Port": 8080
         }
       ],
       "DownstreamPathTemplate": "/api/users/unsubscribe"
@@ -252,8 +252,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "filemanagerapi",
-          "Port": 5000
+          "Host": "filemanager",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/Resources/{everything}",
