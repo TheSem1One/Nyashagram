@@ -17,9 +17,6 @@ COPY ["Services/FileManager/FileManager.Application/FileManager.Application.cspr
 COPY ["Services/FileManager/FileManager.Domain/FileManager.Domain.csproj", "Services/FileManager/FileManager.Domain/"]
 COPY ["Services/FileManager/FileManager.Infrastructure/FileManager.Infrastructure.csproj", "Services/FileManager/FileManager.Infrastructure/"]
 RUN dotnet restore "./Services/FileManager/FileManager.API/FileManager.API.csproj"
-RUN dotnet restore "./Services/FileManager/FileManager.Application/FileManager.Application.csproj"
-RUN dotnet restore "./Services/FileManager/FileManager.Domain/FileManager.Domain.csproj"
-RUN dotnet restore "./Services/FileManager/FileManager.Infrastructure/FileManager.Infrastructure.csproj"
 COPY . .
 WORKDIR "/src/Services/FileManager/FileManager.API"
 RUN dotnet build "./FileManager.API.csproj" -c $BUILD_CONFIGURATION -o /app/build

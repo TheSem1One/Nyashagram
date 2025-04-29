@@ -52,7 +52,7 @@ namespace Post.API
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowAnyOrigin();
-            }));
+            })); 
 
             var app = builder.Build();
             app.UseCors("AllowAny");

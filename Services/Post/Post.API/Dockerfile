@@ -16,9 +16,6 @@ COPY ["Services/Post/Post.Core/Post.Application.csproj", "Services/Post/Post.Cor
 COPY ["Services/Post/Post.Domain/Post.Domain.csproj", "Services/Post/Post.Domain/"]
 COPY ["Services/Post/Post.Infrastructure/Post.Infrastructure.csproj", "Services/Post/Post.Infrastructure/"]
 RUN dotnet restore "./Services/Post/Post.API/Post.API.csproj"
-RUN dotnet restore "./Services/Post/Post.Core/Post.Application.csproj"
-RUN dotnet restore "./Services/Post/Post.Domain/Post.Domain.csproj"
-RUN dotnet restore "./Services/Post/Post.Infrastructure/Post.Infrastructure.csproj"
 COPY . .
 WORKDIR "/src/Services/Post/Post.API"
 RUN dotnet build "./Post.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
