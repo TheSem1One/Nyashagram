@@ -1,0 +1,70 @@
+name: Build and Push Multi-arch Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push filemanager image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Services/FileManager/FileManager.API/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: thesem1one/nyashagram1:latest
+
+      - name: Build and push post image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Services/Post/Post.API/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: thesem1one/nyashagram2:latest
+
+      - name: Build and push stories image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Services/Stories/Stories.API/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: thesem1one/nyashagram3:latest
+
+      - name: Build and push user image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Services/User/User.API/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: thesem1one/nyashagram4:latest
+
+      - name: Build and push apigateway image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Infrastructure/ApiGateway/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: thesem1one/nyashagram5:latest
