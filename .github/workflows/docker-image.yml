@@ -27,7 +27,7 @@ jobs:
       - name: Build and push filemanager image
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: Services/FileManager/FileManager.API
           file: Services/FileManager/FileManager.API/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
@@ -36,16 +36,17 @@ jobs:
       - name: Build and push post image
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: Services/Post/Post.API
           file: Services/Post/Post.API/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: thesem1one/nyashagram2:latest
 
+      # Repeat for other services with adjusted context paths
       - name: Build and push stories image
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: Services/Stories/Stories.API
           file: Services/Stories/Stories.API/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
@@ -54,7 +55,7 @@ jobs:
       - name: Build and push user image
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: Services/User/User.API
           file: Services/User/User.API/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
@@ -63,7 +64,7 @@ jobs:
       - name: Build and push apigateway image
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: Infrastructure/ApiGateway
           file: Infrastructure/ApiGateway/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
