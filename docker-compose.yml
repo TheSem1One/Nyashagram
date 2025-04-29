@@ -20,7 +20,7 @@
         container_name: post
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
-          - ConnectionStrings__DbConnection=mongodb://postdb:27017
+          - ConnectionStrings__DbConnection=mongodb+srv://admin:admin@cluster0.apc7q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
           - ConnectionStrings__DbName=post_mongodb
           - ConnectionStrings__DbCollection=post
         depends_on:
@@ -36,7 +36,7 @@
         container_name: stories
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
-          - ConnectionStrings__DbConnection=mongodb://storiesdb:27018
+          - ConnectionStrings__DbConnection=mongodb+srv://admin:admin@cluster0.apc7q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
           - ConnectionStrings__DbName=stories_mongodb
           - ConnectionStrings__DbCollection=stories
         depends_on:

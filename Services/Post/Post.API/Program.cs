@@ -45,7 +45,6 @@ namespace Post.API
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 });
 
-
             builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
             {
                 corsPolicyBuilder
