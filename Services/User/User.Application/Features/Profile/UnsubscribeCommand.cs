@@ -8,8 +8,8 @@ namespace User.Application.Features.Profile
 {
     public class UnsubscribeCommand : IRequest<bool>
     {
-        public string CurrentName { get; set; } = null!;
-        public string TargetName { get; set; } = null!;
+        public string CurrentNickName { get; set; } = null!;
+        public string TargetNickName { get; set; } = null!;
     }
 
     public class UnsubscribeHandler(IUsers users) : IRequestHandler<UnsubscribeCommand, bool>
