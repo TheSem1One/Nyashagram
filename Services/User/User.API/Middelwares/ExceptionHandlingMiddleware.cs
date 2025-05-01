@@ -42,6 +42,7 @@ namespace User.API.Middelwares
             {
                 UserExistException => HttpStatusCode.Conflict,
                 UserNotFoundException => HttpStatusCode.NotFound,
+                BadRequestException => HttpStatusCode.BadRequest,
                 _ => throw new NotImplementedException(),
             };
         }

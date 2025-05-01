@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Web.Http;
+using User.Application.Common.Exceptions;
 using User.Domain.DTO;
 using User.Domain.DTO.Profile;
 using User.Domain.Repositories;
@@ -59,6 +60,10 @@ namespace User.Infrastructure.Services
         {
             var user = await _db.Users
                 .SingleOrDefaultAsync(p => p.NickName.ToLower() == nickName.ToLower());
+            if(user is null)
+            {
+                throw new UserNotFoundException();
+            }
             return user;
 
         }

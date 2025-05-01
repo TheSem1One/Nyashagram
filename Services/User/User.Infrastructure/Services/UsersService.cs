@@ -51,7 +51,7 @@ namespace User.Infrastructure.Services
 
         public async Task<bool> Subscribe(SubscribeDto subscribeDto)
         {
-            if (subscribeDto.CurrentNickName == subscribeDto.TargetNickName) return false;
+            if (subscribeDto.CurrentNickName == subscribeDto.TargetNickName) throw new BadRequestException();
             var currentUser = await _db.Users
                 .SingleOrDefaultAsync(p => p.NickName.ToLower() == subscribeDto.CurrentNickName.ToLower());
             var targetUser =
@@ -65,7 +65,7 @@ namespace User.Infrastructure.Services
         }
         public async Task<bool> Unsubscribe(SubscribeDto subscribeDto)
         {
-            if (subscribeDto.CurrentNickName == subscribeDto.TargetNickName) return false;
+            if (subscribeDto.CurrentNickName == subscribeDto.TargetNickName) throw new BadRequestException();
             var currentUser = await _db.Users
                 .SingleOrDefaultAsync(p => p.NickName.ToLower() == subscribeDto.CurrentNickName.ToLower());
             var targetUser =
