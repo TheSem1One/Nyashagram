@@ -2,7 +2,7 @@
   "Routes": [
     // FileManager Service
     {
-      "UpstreamPathTemplate": "/api/filemanager",
+      "UpstreamPathTemplate": "/api/file-manager",
       "UpstreamHttpMethod": [ "Post" ],
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -11,7 +11,7 @@
           "Port": 8080
         }
       ],
-      "DownstreamPathTemplate": "/api/filemanager"
+      "DownstreamPathTemplate": "/api/file-manager"
     },
 
     // Post Service
