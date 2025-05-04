@@ -36,6 +36,16 @@ namespace User.Infrastructure.Services
             return true;
         }
 
+        public async Task<bool> AddToFavorite(FavoritePost favorite)
+        {
+            var user = await _db.Users
+                .SingleOrDefaultAsync(p => p.NickName.ToLower() == favorite.NickName.ToLower());
+            user.SavedPosts.Add(favorite.PostId);
+            _db.Users.Update(user);
+            await _db.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<bool> DeletePost(PostDto postDto)
         {
             var user = await _db.Users

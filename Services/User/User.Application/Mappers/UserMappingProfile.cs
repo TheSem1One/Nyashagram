@@ -29,6 +29,7 @@ namespace User.Application.Mappers
             CreateMap<AddStoryCommand, StoryDto>().ReverseMap();
             CreateMap<DeleteStoryCommand, StoryDto>().ReverseMap();
             CreateMap<GetUsersByNickNameQuery, ProfileDto>().ReverseMap();
+            CreateMap<AddToFavoriteCommand, FavoritePost>().ReverseMap();
 
         }
     }

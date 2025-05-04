@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using User.Application.Features.Post;
 using User.Application.Features.Profile;
 using User.Application.Features.Story;
-using User.Domain.DTO;
 using User.Domain.DTO.Profile;
 
 namespace User.API.Controllers
@@ -23,8 +22,15 @@ namespace User.API.Controllers
         [HttpPatch]
         public async Task<ActionResult<bool>> Update([FromBody] UpdateProfileCommand command)
         {
-            var result = await _mediator.Send((command));
+            var result = await _mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<bool>> AddToFavorite([FromBody] AddToFavoriteCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result;
         }
 
         [HttpPatch("addPost")]
