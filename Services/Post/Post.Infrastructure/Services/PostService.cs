@@ -78,7 +78,7 @@ namespace Post.Infrastructure.Services
 
         public async Task<bool> Like(LikeDto dto)
         {
-            var postFilter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, dto.Id);
+            var postFilter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, dto.PostId);
             var existingPost = await _context.Post.Find(postFilter).FirstOrDefaultAsync();
             if (existingPost.Likes.LikesNickName.Contains(dto.NickName))
             {

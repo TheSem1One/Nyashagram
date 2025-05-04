@@ -7,7 +7,7 @@ namespace Post.Application.Features.Post
 {
     public class LikeCommand : IRequest<bool>
     {
-        public string Id { get; set; } = null!;
+        public string PostId { get; set; } = null!;
         public string NickName { get; set; } = null!;
     }
 
