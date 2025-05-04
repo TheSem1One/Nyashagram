@@ -52,7 +52,7 @@ namespace Post.Infrastructure.Services
 
         public async Task<bool> AddComments(CommentsDto comments)
         {
-            var filter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, comments.Id);
+            var filter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, comments.PostId);
             var newComment = new Comment
             {
                 ComentatorNickName = comments.NickName,
@@ -65,7 +65,7 @@ namespace Post.Infrastructure.Services
 
         public async Task<bool> DeleteComments(CommentsDto comments)
         {
-            var filter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, comments.Id);
+            var filter = Builders<Domain.Entities.Post>.Filter.Eq(p => p.PostId, comments.PostId);
             var commentToRemove = Builders<Domain.Entities.Post>.Filter.ElemMatch(
                 p => p.Comments,
                 c => c.ComentatorNickName == comments.NickName && c.Notes == comments.Description);
