@@ -9,6 +9,8 @@ using Post.Infrastructure.Persistence;
 using Post.Infrastructure.Services;
 using System.Net.Mime;
 using System.Text.Json.Serialization;
+using Post.API.Middelwares;
+using Serilog;
 
 
 namespace Post.API
@@ -18,7 +20,10 @@ namespace Post.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .CreateLogger();
+            builder.Host.UseSerilog(logger);
             builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Post.API", Version = "v1" }));
 
             builder.Services.AddControllers();
@@ -55,6 +60,7 @@ namespace Post.API
 
             var app = builder.Build();
             app.UseCors("AllowAny");
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

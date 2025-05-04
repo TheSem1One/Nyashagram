@@ -9,13 +9,17 @@ using Stories.Infrastructure.Services;
 using System.Net.Mime;
 using System.Text.Json.Serialization;
 using Stories.API.Transformers;
+using Serilog;
+using Stories.API.Middelwares;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
 builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Post.API", Version = "v1" }));
 // Add services to the container.
-
+builder.Host.UseSerilog(logger);
 builder.Services.AddControllers();
 builder.Services.Configure<MongoDbSettings>(
             builder.Configuration.GetSection(nameof(MongoDbSettings)));
@@ -46,7 +50,7 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAny", corsPolicyBuilder =>
 }));
 
 var app = builder.Build();
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -1,10 +1,12 @@
-﻿namespace Stories.Application.Responses
+﻿using Stories.Domain.Entity;
+
+namespace Stories.Application.Responses
 {
     public class GetStoryByIdResponse
     {
-        public string? StoriesId { get; set; }
-        public string StoriesImageUrl { get; set; } = null!;
+        public string? StoryId { get; set; }
+        public string StoryImageUrl { get; set; } = null!;
         public string CreatorNickName { get; set; } = null!;
-        public int? Likes { get; set; }
+        public Like? Likes { get; set; } = new();
     }
 }

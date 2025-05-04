@@ -1,9 +1,9 @@
 ﻿using System.Net;
-using User.Application.Common.Exceptions;
-using User.Domain.DTO;
+using Stories.Domain.Entity.DTO;
 using ILogger = Serilog.ILogger;
 
-namespace User.API.Middelwares
+
+namespace Stories.API.Middelwares
 {
     public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger logger)
     {
@@ -35,9 +35,6 @@ namespace User.API.Middelwares
         {
             return exception switch
             {
-                UserExistException => HttpStatusCode.Conflict,
-                UserNotFoundException => HttpStatusCode.NotFound,
-                BadRequestException => HttpStatusCode.BadRequest,
                 _ => throw new NotImplementedException(),
             };
         }

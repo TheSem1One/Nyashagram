@@ -1,6 +1,6 @@
-using System;
 using System.Net.Mime;
 using System.Text.Json.Serialization;
+using FileManager.API.Middelwares;
 using FileManager.API.Transformer;
 using FileManager.Application.Features.FileManager;
 using FileManager.Domain.Repositories;
@@ -12,11 +12,15 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+builder.Host.UseSerilog(logger);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -52,6 +56,7 @@ builder.Services
     });
 var app = builder.Build();
 app.UseCors("AllowAny");
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.ApplyMigration();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
