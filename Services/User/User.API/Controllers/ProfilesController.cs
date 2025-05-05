@@ -26,7 +26,7 @@ namespace User.API.Controllers
             return Ok(result);
         }
 
-        [HttpPatch]
+        [HttpPatch("AddToFavorite")]
         public async Task<ActionResult<bool>> AddToFavorite([FromBody] AddToFavoriteCommand command)
         {
             var result = await _mediator.Send(command);
