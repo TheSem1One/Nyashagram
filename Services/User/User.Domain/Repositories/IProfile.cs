@@ -11,7 +11,7 @@ namespace User.Domain.Repositories
         Task<bool> AddStory(StoryDto storyDto);
         Task<bool> DeleteStory(StoryDto storyDto);
         Task<Entities.User> GetProfile(string nickName);
-        Task<bool> AddToFavorite(FavoritePost favorite);
+        Task<bool> FavoritePosts(FavoritePost favorite);
 
 
     }

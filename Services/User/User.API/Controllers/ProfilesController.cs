@@ -26,10 +26,10 @@ namespace User.API.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("AddToFavorite")]
-        public async Task<ActionResult<bool>> AddToFavorite([FromBody] AddToFavoriteCommand command)
+        [HttpPatch("FavoritePosts")]
+        public async Task<ActionResult<bool>> AddToFavorite([FromBody] FavoritePostsCommand postsCommand)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(postsCommand);
             return result;
         }
 

@@ -36,11 +36,18 @@ namespace User.Infrastructure.Services
             return true;
         }
 
-        public async Task<bool> AddToFavorite(FavoritePost favorite)
+        public async Task<bool> FavoritePosts(FavoritePost favorite)
         {
             var user = await _db.Users
                 .SingleOrDefaultAsync(p => p.NickName.ToLower() == favorite.NickName.ToLower());
-            user.SavedPosts.Add(favorite.PostId);
+            if(user.SavedPosts.Contains(favorite.PostId))
+            {
+                user.SavedPosts.Remove(favorite.PostId);
+            }
+            else
+            {
+                user.SavedPosts.Add(favorite.PostId);
+            }
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
             return true;
