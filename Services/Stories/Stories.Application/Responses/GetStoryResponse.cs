@@ -2,6 +2,6 @@
 {
     public class GetStoryResponse
     {
-        public string? StoriesId { get; set; } = null!;
+        public string? StoryId { get; set; } = null!;
     }
 }
