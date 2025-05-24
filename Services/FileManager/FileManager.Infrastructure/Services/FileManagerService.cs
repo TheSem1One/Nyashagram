@@ -15,10 +15,10 @@ namespace FileManager.Infrastructure.Services
         {
 
             var nameFile = _fileHelper.SaveFile(file);
-            var image = new File() { FileUrl = nameFile };
+            var image = new File() { FileUrl = nameFile.Result };
             await _imageContext.Files.AddAsync(image);
             await _imageContext.SaveChangesAsync();
-            return nameFile;
+            return nameFile.Result;
         }
     }
 }
